@@ -11,7 +11,7 @@
 
         <form method="POST" action="{{ route('user.register') }}">
             @csrf
-
+            ユーザー用
             <!-- Name -->
             <div>
                 <x-label for="name" :value="__('Name')" />
