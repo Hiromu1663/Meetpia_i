@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\BookmarkController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,12 +17,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', [WelcomeController::class, 'index'])->name('welcome.index');
+// Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+// Route::resource('user/bookmark', BookmarkController::class);
+// Route::resource('user/comment', CommentController::class);
+
+
+// Route::prefix('admin')
+// ->middleware('auth')
+// ->name('admin.')
+// ->group(function(){
+//     Route::get('index', [AdminController::class, 'index'])->name('index');
+//     Route::get('destroy/{owner}', [OwnersController::class, 'destroy'])->name('destroy');
+// });
+
+
+
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('user.welcome');
 });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth:users'])->name('dashboard');
 
 require __DIR__.'/auth.php';
