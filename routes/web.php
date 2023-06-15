@@ -3,7 +3,7 @@
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\CommentController;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,8 +38,21 @@ Route::get('/', function () {
     return view('user.welcome');
 });
 
+Route::prefix('user')
+->middleware('auth:users')
+->controller(UserController::class)
+->group(function(){
+    Route::get('/', 'index')->name('index');
+    Route::get('create', 'create')->name('create');
+    Route::post('/', 'store')->name('store');
+    Route::get('/{id}', 'show')->name('show');
+    Route::get('/{id}/edit', 'edit')->name('edit');
+    Route::post('/{id}', 'update')->name('update');
+    Route::post('/{id}/destroy', 'destroy')->name('destroy');
+});
+
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('user.dashboard');
 })->middleware(['auth:users'])->name('dashboard');
 
 require __DIR__.'/auth.php';
