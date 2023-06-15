@@ -478,6 +478,16 @@ video {
 }@media (min-width: 1536px) {.container {
     max-width: 1536px;
   }
+}.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }.pointer-events-none {
   pointer-events: none;
 }.fixed {
@@ -495,8 +505,12 @@ video {
   right: 0px;
 }.top-0 {
   top: 0px;
+}.top-full {
+  top: 100%;
 }.z-0 {
   z-index: 0;
+}.z-10 {
+  z-index: 10;
 }.z-20 {
   z-index: 20;
 }.z-50 {
@@ -598,6 +612,8 @@ video {
   max-width: 72rem;
 }.max-w-7xl {
   max-width: 80rem;
+}.max-w-\[85rem\] {
+  max-width: 85rem;
 }.max-w-xl {
   max-width: 36rem;
 }.flex-1 {
@@ -606,6 +622,10 @@ video {
   flex-shrink: 0;
 }.shrink-0 {
   flex-shrink: 0;
+}.grow {
+  flex-grow: 1;
+}.basis-full {
+  flex-basis: 100%;
 }.origin-top {
   transform-origin: top;
 }.origin-top-left {
@@ -642,6 +662,16 @@ video {
   justify-content: center;
 }.justify-between {
   justify-content: space-between;
+}.gap-2 {
+  gap: 0.5rem;
+}.gap-5 {
+  gap: 1.25rem;
+}.gap-x-3 {
+  -moz-column-gap: 0.75rem;
+       column-gap: 0.75rem;
+}.gap-x-3\.5 {
+  -moz-column-gap: 0.875rem;
+       column-gap: 0.875rem;
 }.space-x-3 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.75rem * var(--tw-space-x-reverse));
@@ -737,6 +767,9 @@ video {
 }.px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }.px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -774,6 +807,8 @@ video {
   padding-bottom: 0.25rem;
 }.pb-3 {
   padding-bottom: 0.75rem;
+}.pl-11 {
+  padding-left: 2.75rem;
 }.pl-3 {
   padding-left: 0.75rem;
 }.pl-4 {
@@ -792,6 +827,8 @@ video {
   padding-top: 2rem;
 }.text-center {
   text-align: center;
+}.align-middle {
+  vertical-align: middle;
 }.font-sans {
   font-family: Nunito, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }.text-base {
@@ -912,6 +949,10 @@ video {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
+}.transition-\[opacity\2c margin\] {
+  transition-property: opacity,margin;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }.transition-all {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -922,12 +963,29 @@ video {
   transition-duration: 200ms;
 }.duration-75 {
   transition-duration: 75ms;
+}.duration-\[0\.1ms\] {
+  transition-duration: 0.1ms;
 }.ease-in {
   transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
 }.ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }.ease-out {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}.before\:absolute::before {
+  content: var(--tw-content);
+  position: absolute;
+}.before\:-top-5::before {
+  content: var(--tw-content);
+  top: -1.25rem;
+}.before\:left-0::before {
+  content: var(--tw-content);
+  left: 0px;
+}.before\:h-5::before {
+  content: var(--tw-content);
+  height: 1.25rem;
+}.before\:w-full::before {
+  content: var(--tw-content);
+  width: 100%;
 }.hover\:border-gray-300:hover {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
@@ -943,6 +1001,9 @@ video {
 }.hover\:bg-gray-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+}.hover\:bg-white:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }.hover\:text-gray-400:hover {
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity));
@@ -1013,11 +1074,18 @@ video {
 }.focus\:ring-blue-500:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(59 130 246 / var(--tw-ring-opacity));
+}.focus\:ring-blue-600:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(37 99 235 / var(--tw-ring-opacity));
 }.focus\:ring-indigo-200:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(199 210 254 / var(--tw-ring-opacity));
 }.focus\:ring-opacity-50:focus {
   --tw-ring-opacity: 0.5;
+}.focus\:ring-offset-2:focus {
+  --tw-ring-offset-width: 2px;
+}.focus\:ring-offset-white:focus {
+  --tw-ring-offset-color: #fff;
 }.active\:bg-gray-100:active {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
@@ -1032,7 +1100,10 @@ video {
   color: rgb(55 65 81 / var(--tw-text-opacity));
 }.disabled\:opacity-25:disabled {
   opacity: 0.25;
-}@media (prefers-color-scheme: dark) {.dark\:border-gray-700 {
+}@media (prefers-color-scheme: dark) {.dark\:divide-gray-700 > :not([hidden]) ~ :not([hidden]) {
+    --tw-divide-opacity: 1;
+    border-color: rgb(55 65 81 / var(--tw-divide-opacity));
+  }.dark\:border-gray-700 {
     --tw-border-opacity: 1;
     border-color: rgb(55 65 81 / var(--tw-border-opacity));
   }.dark\:bg-gray-800 {
@@ -1041,6 +1112,12 @@ video {
   }.dark\:bg-gray-900 {
     --tw-bg-opacity: 1;
     background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+  }.dark\:bg-slate-900 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(15 23 42 / var(--tw-bg-opacity));
+  }.dark\:bg-white {
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity));
   }.dark\:text-gray-400 {
     --tw-text-opacity: 1;
     color: rgb(156 163 175 / var(--tw-text-opacity));
@@ -1050,6 +1127,23 @@ video {
   }.dark\:text-white {
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity));
+  }.dark\:hover\:bg-slate-800:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(30 41 59 / var(--tw-bg-opacity));
+  }.dark\:hover\:bg-white:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  }.dark\:hover\:text-gray-300:hover {
+    --tw-text-opacity: 1;
+    color: rgb(209 213 219 / var(--tw-text-opacity));
+  }.dark\:hover\:text-gray-500:hover {
+    --tw-text-opacity: 1;
+    color: rgb(107 114 128 / var(--tw-text-opacity));
+  }.dark\:hover\:text-white:hover {
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+  }.dark\:focus\:ring-offset-gray-800:focus {
+    --tw-ring-offset-color: #1f2937;
   }
 }@media (min-width: 640px) {.sm\:-my-px {
     margin-top: -1px;
@@ -1060,6 +1154,8 @@ video {
     margin-left: 2.5rem;
   }.sm\:ml-6 {
     margin-left: 1.5rem;
+  }.sm\:mt-0 {
+    margin-top: 0px;
   }.sm\:block {
     display: block;
   }.sm\:flex {
@@ -1068,29 +1164,50 @@ video {
     display: none;
   }.sm\:h-20 {
     height: 5rem;
+  }.sm\:w-48 {
+    width: 12rem;
   }.sm\:max-w-md {
     max-width: 28rem;
   }.sm\:flex-1 {
     flex: 1 1 0%;
+  }.sm\:flex-row {
+    flex-direction: row;
+  }.sm\:flex-nowrap {
+    flex-wrap: nowrap;
   }.sm\:items-center {
     align-items: center;
   }.sm\:justify-start {
     justify-content: flex-start;
+  }.sm\:justify-end {
+    justify-content: flex-end;
   }.sm\:justify-center {
     justify-content: center;
   }.sm\:justify-between {
     justify-content: space-between;
   }.sm\:rounded-lg {
     border-radius: 0.5rem;
+  }.sm\:border {
+    border-width: 1px;
   }.sm\:px-6 {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+  }.sm\:pl-5 {
+    padding-left: 1.25rem;
   }.sm\:pt-0 {
     padding-top: 0px;
   }.sm\:text-left {
     text-align: left;
   }.sm\:text-right {
     text-align: right;
+  }.sm\:shadow-md {
+    --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  }.sm\:duration-\[150ms\] {
+    transition-duration: 150ms;
+  }@media (prefers-color-scheme: dark) {.sm\:dark\:border {
+      border-width: 1px;
+    }
   }
 }@media (min-width: 768px) {.md\:w-1\/2 {
     width: 50%;
