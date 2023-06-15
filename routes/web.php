@@ -33,13 +33,13 @@ use Illuminate\Support\Facades\Route;
 
 
 
-
+//誰でも見れるトップページ
 Route::get('/', function () {
-    return view('user.welcome');
+    return view('welcome.welcome-index');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('user.dashboard');
 })->middleware(['auth:users'])->name('dashboard');
 
 require __DIR__.'/auth.php';
