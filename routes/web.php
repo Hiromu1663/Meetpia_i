@@ -33,9 +33,9 @@ use Illuminate\Support\Facades\Route;
 
 
 
-
+//誰でも見れるトップページ
 Route::get('/', function () {
-    return view('user.welcome');
+    return view('welcome.welcome-index');
 });
 
 Route::prefix('user')
