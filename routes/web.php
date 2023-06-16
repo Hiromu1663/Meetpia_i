@@ -56,3 +56,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth:users'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+
+// profile表示用
+Route::get('/profile', function() {
+    return view('user.profile');
+});
