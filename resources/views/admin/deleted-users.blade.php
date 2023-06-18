@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            ユーザー一覧
+            削除済みユーザー一覧
         </h2>
     </x-slot>
 
@@ -61,15 +61,24 @@
                                     <th scope="col" class="px-6 py-3 text-left">
                                         <div class="flex items-center gap-x-2">
                                         <span class="text-xs font-semibold uppercase tracking-wide">
-                                            Created Date
+                                            Deleted Date
                                         </span>
                                         </div>
                                     </th>
-                    
-                                    <th scope="col" class="px-6 py-3 text-right"></th>
-                                    </tr>
+                                    <th scope="col" class="px-6 py-3 text-left">
+                                        <div class="flex items-center gap-x-2">
+                                        <span class="text-xs font-semibold uppercase tracking-wide"> 
+                                        </span>
+                                        </div>
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left">
+                                        <div class="flex items-center gap-x-2">
+                                        <span class="text-xs font-semibold uppercase tracking-wide">
+                                        </span>
+                                        </div>
+                                    </th>
                                 </thead>
-                                @foreach($users as $user)
+                                @foreach($deletedUsers as $user)
                                 <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                                     <tr>
                                     <th scope="col" class="px-6 py-3 text-left">
@@ -98,13 +107,18 @@
                                     </td>
                                     <td class="h-px w-px whitespace-nowrap">
                                         <div class="px-6 py-3">
-                                        <span class="text-sm text-gray-500">{{ $user->created_at }}</span>
+                                        <span class="text-sm text-gray-500">{{ $user->deleted_at }}</span>
                                         </div>
                                     </td>
                                     <td class="h-px w-px whitespace-nowrap">
-                                        <form method="post" action="{{route('admin.destroy', ['user'=>$user->id])}}" id="delete_{{$user->id}}">
+                                        <a href="{{ route('admin.deleted-users.restore', ['user'=>$user->id]) }}">
+                                          <div class="inline-flex items-center gap-x-1.5 text-sm text-blue-600 decoration-2 hover:underline font-medium">Restore</div>
+                                        </a>
+                                    </td>  
+                                    <td class="h-px w-px whitespace-nowrap">
+                                        <form method="post" action="{{route('admin.deleted-users.destroy', ['user'=>$user->id])}}" id="delete_{{$user->id}}">
                                             @csrf
-                                            @method('delete')
+                                            @method('get')
                                           <div class="px-6 py-1.5">
                                           <a class="inline-flex items-center gap-x-1.5 text-sm text-red-600 decoration-2 hover:underline font-medium" href="#" data-id="{{$user->id}}" onclick="deletePost(this)">Delete</a>
                                           </div>
