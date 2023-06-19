@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -47,8 +48,11 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return view('user.show');
+        $user = User::find($id);
+        return view('user.show', compact('user'));
     }
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -83,4 +87,12 @@ class UserController extends Controller
     {
         //
     }
+
+    //Project詳細表示
+    // public function showProject($id)
+    // {
+    //     $project = Project::find($id);
+    //     return view('user.show-project', compact('project'));
+    // }
+
 }

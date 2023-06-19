@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Project;
 
 class AdminController extends Controller
 {
@@ -23,9 +24,18 @@ class AdminController extends Controller
         return view('admin.index', compact('users'));
     }
     
+    //ユーザー詳細表示
     public function show($id)
     {
-        // ユーザーの詳細ページ
+        $user = User::find($id);
+        return view('user.profile', compact('user'));
+    }
+
+    //Project詳細表示
+    public function showProject($id)
+    {
+        $project = Project::find($id);
+        return view('user.show-project', compact('project'));
     }
 
     // ユーザーの一時的削除(ソフトデリート)

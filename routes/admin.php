@@ -38,8 +38,8 @@ Route::middleware('auth:admin')
 ->controller(AdminController::class)
 ->group(function(){
     Route::get('/', 'index')->name('index');
-    Route::get('show/{user}', 'show')->name('show');
-    Route::delete('destroy/{user}', 'destroy')->name('destroy');
+    Route::get('/show/{id}', 'show')->name('show');
+    Route::delete('/destroy/{id}', 'destroy')->name('destroy');
 
     // 削除されたユーザー
     // Route::get('delete-users','deletedUserIndex')->name('deleted-users.index');
@@ -55,9 +55,9 @@ Route::prefix('deleted-users')
 ->name('deleted-users.')
 ->group(function(){
     Route::get('/','deletedUserIndex')->name('index');
-    Route::get('show/{user}', 'deletedUserShow')->name('show');
-    Route::get('destroy/{user}', 'deletedUserDestroy')->name('destroy');
-    Route::get('{user}/restore', 'deletedUserRestore')->name('restore');
+    Route::get('/show/{id}', 'deletedUserShow')->name('show');
+    Route::get('/destroy/{id}', 'deletedUserDestroy')->name('destroy');
+    Route::get('/restore/{id}', 'deletedUserRestore')->name('restore');
 });
 
 
