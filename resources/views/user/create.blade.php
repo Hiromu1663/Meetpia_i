@@ -63,8 +63,7 @@
                 </div>  
             </div>
 
-            {{-- Date & Time --}
-            
+            {{-- Date & Time --}}
             <div class="mt-4 mr-4">
                 <x-label for="date" :value="__('Date')" />
                 <div id="date" class="flex">
@@ -73,21 +72,6 @@
                     <x-input id="end_time" class="block" type="datetime-local" name="end_time" :value="old('end_time')" required />
                 </div>
             </div>
-
-            {{-- <div class="flex">
-                <div class="mt-4 mr-4">
-                    <x-label for="date" :value="__('Date')" />
-                    <x-input id="date" class="block mt-1" type="Date" name="date" :value="old('date')" required />
-                </div>
-                <div class="mt-4">
-                    <x-label for="time" :value="__('Time')" />
-                    <div id="time" class="flex">
-                        <x-input id="start-time" class="block mt-1" type="time" name="start-time" :value="old('start-time')" required />
-                        <span class="block mt-1 pt-2">~</span>
-                        <x-input id="end-time" class="block mt-1" type="time" name="end-time" :value="old('end-time')" required />
-                    </div>
-                </div>
-            </div> --}}
 
             {{-- Location --}}
             <div class="mt-4">
