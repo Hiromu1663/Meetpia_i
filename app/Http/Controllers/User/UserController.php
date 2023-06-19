@@ -17,7 +17,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.index');
+        $projects = Project::all(); 
+        return view('user.index', compact('projects'));
     }
 
     /**
@@ -63,7 +64,8 @@ class UserController extends Controller
         $project->location = $request->location;
         $project->save();
 
-        return redirect()->route("user.index");
+        // return redirect()->route("user.index");
+        return view('user.index', ['project' => $project]);
     }
 
     /**
@@ -77,8 +79,6 @@ class UserController extends Controller
         $user = User::find($id);
         return view('user.show', compact('user'));
     }
-
-
 
     /**
      * Show the form for editing the specified resource.
