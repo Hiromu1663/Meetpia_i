@@ -64,8 +64,7 @@ class UserController extends Controller
         $project->location = $request->location;
         $project->save();
 
-        // return redirect()->route("user.index");
-        return view('user.index', ['project' => $project]);
+        return redirect()->route("user.index");
     }
 
     /**
