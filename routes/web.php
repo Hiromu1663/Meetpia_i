@@ -43,12 +43,12 @@ Route::prefix('user')
 ->controller(UserController::class)
 ->group(function(){
     Route::get('/', 'index')->name('index');
-    Route::get('create', 'create')->name('create');
+    Route::get('/create', 'create')->name('create');
     Route::post('/', 'store')->name('store');
-    Route::get('/{id}', 'show')->name('show');
-    Route::get('/{id}/edit', 'edit')->name('edit');
+    Route::get('/show/{id}', 'show')->name('show');
+    Route::get('/edit/{id}', 'edit')->name('edit');
     Route::post('/{id}', 'update')->name('update');
-    Route::post('/{id}/destroy', 'destroy')->name('destroy');
+    Route::post('/destroy/{id}', 'destroy')->name('destroy');
 });
 
 Route::get('/dashboard', function () {
@@ -62,3 +62,5 @@ require __DIR__.'/auth.php';
 Route::get('/profile', function() {
     return view('user.profile');
 });
+
+// Route::get('/show-project/{id}','UserController@showProject')->name('show-project');
