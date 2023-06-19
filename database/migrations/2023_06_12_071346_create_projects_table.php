@@ -21,10 +21,11 @@ class CreateProjectsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('genre');
-            $table->date('date');
-            $table->time('time');
-            $table->decimal('longitude', 10, 8);//緯度を格納するカラム
-            $table->decimal('latitude', 10, 8);//経度を格納するカラム
+            $table->datetime('start_time');
+            $table->datetime('end_time');
+            $table->string('location')->nullable();
+            // $table->decimal('longitude', 10, 8);//緯度を格納するカラム
+            // $table->decimal('latitude', 10, 8);//経度を格納するカラム
             $table->timestamps();
         });
     }

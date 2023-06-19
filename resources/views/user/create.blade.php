@@ -21,7 +21,7 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
   
-        <form method="POST" action="{{ route('user.register') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('user.store') }}" enctype="multipart/form-data">
             @csrf
   
             <!-- Title -->
@@ -44,34 +44,41 @@
 
             {{-- Category --}}
             <div class="mt-4">
-                <x-label for="category" :value="__('Category')" />
-                <div id="category" class="flex">
+                <x-label for="genre" :value="__('Genre')" />
+                <div id="genre" class="flex">
                     <x-label for="business" :value="__('Business')" />
-                    <x-input id="business" class="block mt-1 mr-2" type="radio" name="category" :value="old('business')" />
+                    <x-input id="business" class="block mt-1 mr-2" type="radio" name="genre" value="Business" />
 
                     <x-label for="hobby" :value="__('Hobby')" />
-                    <x-input id="hobby" class="block mt-1 mr-2" type="radio" name="category" :value="old('hobby')" />
+                    <x-input id="hobby" class="block mt-1 mr-2" type="radio" name="genre" value="Hobby" />
 
                     <x-label for="study" :value="__('Study')" />
-                    <x-input id="study" class="block mt-1 mr-2" type="radio" name="category" :value="old('study')" />
+                    <x-input id="study" class="block mt-1 mr-2" type="radio" name="genre" value="Study" />
 
                     <x-label for="trade" :value="__('Trade')" />
-                    <x-input id="trade" class="block mt-1 mr-2" type="radio" name="category" :value="old('trade')" />
+                    <x-input id="trade" class="block mt-1 mr-2" type="radio" name="genre" value="Trade" />
 
                     <x-label for="others" :value="__('Others')" />
-                    <x-input id="others" class="block mt-1" type="radio" name="category" :value="old('others')" />
+                    <x-input id="others" class="block mt-1" type="radio" name="genre" value="Others" />
                 </div>  
             </div>
 
-            {{-- Date & Time --}}
-            <div class="flex">
-                {{-- Date --}}
+            {{-- Date & Time --}
+            
+            <div class="mt-4 mr-4">
+                <x-label for="date" :value="__('Date')" />
+                <div id="date" class="flex">
+                    <x-input id="start_time" class="block" type="datetime-local" name="start_time" :value="old('start_time')" required />
+                    <span class="block mt-1 pt-1">~</span>
+                    <x-input id="end_time" class="block" type="datetime-local" name="end_time" :value="old('end_time')" required />
+                </div>
+            </div>
+
+            {{-- <div class="flex">
                 <div class="mt-4 mr-4">
                     <x-label for="date" :value="__('Date')" />
                     <x-input id="date" class="block mt-1" type="Date" name="date" :value="old('date')" required />
                 </div>
-
-                {{-- Time --}}
                 <div class="mt-4">
                     <x-label for="time" :value="__('Time')" />
                     <div id="time" class="flex">
@@ -80,12 +87,12 @@
                         <x-input id="end-time" class="block mt-1" type="time" name="end-time" :value="old('end-time')" required />
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             {{-- Location --}}
             <div class="mt-4">
                 <x-label for="location" :value="__('Location')" />
-                <x-input id="location" class="block mt-1 w-full" type="text" name="location" :value="old('location')" required />
+                <x-input id="location" class="block mt-1 w-full" type="text" name="location" :value="old('location')" />
             </div>
             
 

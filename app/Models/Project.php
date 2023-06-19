@@ -13,8 +13,8 @@ class Project extends Model
         'image',
         'user_id',
         'genre',
-        'date',
-        'time',
+        'start_time',
+        'end_time',
         'location',
     ];
 
