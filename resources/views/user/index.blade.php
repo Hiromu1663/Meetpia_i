@@ -102,7 +102,7 @@
                                             <i class="fa fa-commenting ml-2" aria-hidden="true">120</i>
                                         </a>
                                         <a href="#">
-                                            <i class="fa fa-user-circle-o ml-2" aria-hidden="true">{{ Auth::user()->name }}</i>
+                                            <i class="fa fa-user-circle-o ml-2" aria-hidden="true">{{ $project->user->name }}</i>
                                         </a>
                                     </div>
                                 </div>
