@@ -53,12 +53,12 @@
             <li>
               <ul class="flex space-x-2s">
                 <li class="text-gray-500 mr-3">{{ $user->gender }}</li>
-                <li class="text-gray-500 mr-3">{{ $user->age }}</li>
+                <li class="text-gray-500 mr-3">{{ $age }} years old</li>
                 <li class="text-gray-500 mr-3">{{ $user->status }}</li>
               </ul>
             </li>
             {{-- 電話番号、メールアドレス、住所 --}}
-            <li>phonenumber : {{ $user->phonenumber }}</li>
+            <li>phonenumber : {{ $user->phoneNumber }}</li>
             <li>email : {{ $user->email }}</li>
             <li>address : {{ $user->address }}</li>
           </ul>

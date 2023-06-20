@@ -76,8 +76,18 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
+        $birth_year = $user->birth_year;
+        $birth_month = $user->birth_month;
+        $birth_day = $user->birth_day;
+        $currentYear = date('Y');
+        $currentMonth = date('m');
+        $currentDay = date('d');
+        $age = $currentYear - $birth_year;
+        if ($currentMonth < $birth_month || ($currentMonth == $birth_month && $currentDay < $birth_day)) {
+        $age--; // 誕生日が来ていない場合は年齢を1つ引く
+        }
         $projects = Project::where('user_id', $id)->get();
-        return view('user.show', compact('user', 'projects'));
+        return view('user.show', compact('user', 'projects', 'age'));
     }
 
     /**
