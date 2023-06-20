@@ -1,26 +1,11 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
-
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <script src="{{ asset('js/app.js') }}" defer></script>
-
-    </head>
+<x-app-layout>
     <section class="text-gray-600 body-font overflow-hidden ">
         <div class="container px-5 mx-auto mt-8">
           <div class="lg:w-full mx-auto flex flex-wrap">
-            <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="https://dummyimage.com/400x400">
+            <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="{{ asset('storage/images/'.$project->image) }}">
             <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <h2 class="text-sm title-font text-gray-500 tracking-widest">EVENT TITLE</h2>
-              <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">The Catcher in the Rye</h1>
+              <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{ $project->title }}</h1>
               <div class="flex mb-4">
                 <span class="flex items-center">
                   <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-purple-500" viewBox="0 0 24 24">
@@ -58,14 +43,14 @@
                   </a>
                 </span>
               </div>
-              <p class="leading-relaxed">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati corrupti modi praesentium voluptas aut animi veniam tenetur ipsa repudiandae alias tempora, sunt nemo hic ullam? Maxime enim reprehenderit aut dolor. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati amet ad, eligendi quos exercitationem cumque, quibusdam nesciunt in necessitatibus, maiores quaerat fugit quia! Consectetur ducimus sint quasi pariatur nostrum qui! Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam fugiat expedita amet nulla alias velit aliquid, impedit quos veniam temporibus sed possimus deleniti consequuntur iste, est nemo porro vitae sit?</p>
+              <p class="leading-relaxed">{{ $project->contents }}</p>
               <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
                 <div class="flex">
                   <span class="mr-3">Location</span>
                 </div>
               </div>
               <div class="flex">
-                <span class="title-font font-medium text-2xl text-gray-900">IT Park Building, Cebu City, philippines</span>
+                <span class="title-font font-medium text-2xl text-gray-900">{{ $project->location }}</span>
               </div>
               <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
                 <div class="flex">
@@ -73,7 +58,7 @@
                 </div>
               </div>
               <div class="flex">
-                <span class="title-font font-medium text-2xl text-gray-900">2023/6/12 13:00~16:00</span>
+                <span class="title-font font-medium text-2xl text-gray-900">{{ $project->start_time }}〜{{ $project->end_time }}</span>
                             </div>
             </div>
           </div>
@@ -97,11 +82,11 @@
                       <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
                     </svg>
                   </div>
-                  <h2 class="text-gray-900 text-lg title-font font-medium">Owner Name</h2>
+                  <h2 class="text-gray-900 text-lg title-font font-medium">{{ $project->user->name }}</h2>
                 </div>
                 <p class="leading-relaxed text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis asperiores facilis possimus suscipit numquam et laudantium, consequatur dolorum omnis illo consequuntur mollitia aliquid debitis velit sunt blanditiis modi quibusdam nulla! Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus sit blanditiis optio, deserunt praesentium eligendi ullam autem placeat ex est, omnis beatae iusto quod hic, quia deleniti dolor quae dolores!</p>
                 <div>
-                <a class="mt-3 mb-3 text-indigo-500 inline-flex items-center">Read More
+                  <a class="mt-3 mb-3 text-indigo-500 inline-flex items-center">Read More</a>
                   <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
                     <path d="M5 12h14M12 5l7 7-7 7"></path>
                   </svg>
@@ -157,7 +142,7 @@
                         </div>
                       </div>
                       <div class="flex flex-row items-center justify-center p-2 w-full">
-                        <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Jion</button>
+                        {{-- <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Jion</button> --}}
                         <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Contact</button>
                       </div>
                   </div>
@@ -170,4 +155,4 @@
         </div>
       </div>
     </section>
-</html>
+  </x-app-layout>
