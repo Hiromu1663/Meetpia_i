@@ -33,6 +33,8 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+        $avatar = $request->file('avatar')->getClientOriginalName();
+        $request->file('avatar')->storeAs('public/images', $avatar);
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -53,7 +55,7 @@ class RegisteredUserController extends Controller
             'gender' => $request->gender,
             'age' => $request->age,
             'address' => $request->address,
-            'avatar' => $request->avatar,
+            'avatar' => $avatar,
             'status' => $request->status,
             'introduction' => $request->introduction,
             'password' => Hash::make($request->password),

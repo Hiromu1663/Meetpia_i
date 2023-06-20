@@ -1,22 +1,11 @@
 <x-app-layout>
-{{-- <!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="path/to/output.css">
-
-  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-  <title>Document</title>
-</head> --}}
 <body>
   {{-- プロフィールカード --}}
   <div class="text-gray-600 body-font overflow-hidden">
     <div class="container px-5 py-12 mx-auto">
       <div class="lg:h-full mx-auto flex sm:flex-col sm:items-center md:flex-row">
         <div class="sm:w-96 md:w-60 lg:w-96 md:h-60 lg:h-96">
-          <img alt="profile-image" class="w-full h-full object-cover object-center rounded-full" src="{{ asset('storage/images/'.$user->image) }}">
+          <img alt="profile-image" class="w-full h-full object-cover object-center rounded-full" src="{{ asset('storage/images/'.$user->avatar) }}">
         </div>
       
         <div class="lg:w-4/6 lg:py-6 pl-5 mt-6 mb-3 lg:mt-0"> 
@@ -103,6 +92,5 @@
     @endforeach
   </div>
 </body>
-</html>
 
 </x-app-layout>
