@@ -36,12 +36,26 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phoneNumber' => ['required', 'string', 'unique:users'],
+            'gender' => ['required', 'string'],
+            'age' => ['required', 'integer', 'min:18', 'max:100'],
+            'address' => ['required', 'string'],
+            'avatar' => ['nullable', 'image'],
+            'status' => ['required', 'string', 'in:Employee,Civil Servant,Self-employed,Student,Artist,Doctor,Lawyer,Teacher,Engineer,Salesperson,Other,test'],
+            'introduction' => ['nullable', 'text'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         Auth::guard('users')->login($user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'phoneNumber' => $request->phoneNumber,
+            'gender' => $request->gender,
+            'age' => $request->age,
+            'address' => $request->address,
+            'avatar' => $request->avatar,
+            'status' => $request->status,
+            'introduction' => $request->introduction,
             'password' => Hash::make($request->password),
         ]));
 

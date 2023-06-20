@@ -18,6 +18,11 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'test',
             'email' => 'test@test.com',
+            'phoneNumber' => '1234567890',
+            'gender' => 'test',
+            'age' => '100',
+            'address' => 'test',
+            'status' => 'test',
             'password' => Hash::make('test123'),
             'created_at' => '2023/01/01 11:11:11',
         ]);
