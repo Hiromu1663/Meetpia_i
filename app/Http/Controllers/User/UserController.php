@@ -75,8 +75,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-        return view('user.show', compact('user'));
+        $user = User::findOrFail($id);
+        $projects = Project::where('user_id', $id)->get();
+        return view('user.show', compact('user', 'projects'));
     }
 
     /**
