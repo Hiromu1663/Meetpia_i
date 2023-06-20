@@ -115,10 +115,10 @@ class UserController extends Controller
     }
 
     //Project詳細表示
-    // public function showProject($id)
-    // {
-    //     $project = Project::find($id);
-    //     return view('user.show-project', compact('project'));
-    // }
+    public function showProject($id)
+    {
+        $project = Project::find($id);
+        return view('user.show-project', compact('project'));
+    }
 
 }
