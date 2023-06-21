@@ -1,0 +1,16 @@
+.swiper-container {
+  width: 100%;
+  height: 300px; /* 必要な高さに調整してください */
+}
+
+.swiper-wrapper {
+  display: flex;
+  width: 400%; /* スライドが4つなので、スライド幅の4倍の幅に設定 */
+}
+
+.swiper-slide {
+  width: 25%; /* スライド幅を25%に設定 */
+  height: 100%;
+  text-align: center;
+  line-height: 300px;
+}
