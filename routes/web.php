@@ -39,7 +39,6 @@ Route::get('/', function () {
 });
 
 Route::prefix('user')
-->name('user.')
 ->middleware('auth:users')
 ->controller(UserController::class)
 ->group(function(){
