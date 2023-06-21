@@ -17,7 +17,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $projects = Project::all(); 
+        // 最新４件まで取得
+        $projects = Project::orderBy('created_at', 'DESC')->take(6)->get();
         return view('user.index', compact('projects'));
     }
 
