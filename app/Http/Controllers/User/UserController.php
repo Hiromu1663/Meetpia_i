@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
+use Illuminate\Validation\Rule;
+
 
 class UserController extends Controller
 {
@@ -99,7 +103,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('user.edit', compact('user'));
     }
 
     /**
@@ -112,8 +117,41 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        // 
+        $user = User::find($id);
+        // 入力された現在のパスワードを検証
+        if (!Hash::check($request->current_password, $user->password)) {
+            return redirect()->back()->withErrors(['current_password' => 'The current password is incorrect.']);
+        }
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'phoneNumber' => ['required', 'string', Rule::unique('users')->ignore($user->id)],
+            'gender' => ['required', 'string'],
+            'birth_year' => ['required', 'integer'],
+            'birth_month' => ['required', 'integer'],
+            'birth_day' => ['required', 'integer'],
+            'address' => ['required', 'string'],
+            'status' => ['required', 'string', 'in:Employee,Civil Servant,Self-employed,Student,Artist,Doctor,Lawyer,Teacher,Engineer,Salesperson,Other,test'],
+            'introduction' => ['nullable', 'text'],
+            'new_password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->phoneNumber = $request->phoneNumber;
+            $user->gender = $request->gender;
+            $user->birth_year = $request->birth_year;
+            $user->birth_month = $request->birth_month;
+            $user->birth_day = $request->birth_day;
+            $user->address = $request->address;
+            $user->status = $request->status;
+            $user->introduction = $request->introduction;
+            $user->password = Hash::make($request->new_password);
+            $user->save();
+
+            return redirect()->route("user.show", $user->id);
     }
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -132,7 +170,7 @@ class UserController extends Controller
         $project = Project::find($id);
         return view('user.show-project', compact('project'));
     }
-
+  
     public function editProject($id)
     {
         $project = Project::find($id);
@@ -174,5 +212,43 @@ class UserController extends Controller
     {
         Project::find($id)->delete();
         return redirect()->route("user.index");
+    }
+  
+   // Introductionのみ編集
+    public function editIntroduction($id)
+    {
+        $user = User::find($id);
+        return view('user.edit-introduction', compact('user'));   
+    }
+
+    public function updateIntroduction(Request $request, $id)
+    {
+        $request->validate([
+            'introduction' => ['nullable', 'string'],
+        ]);
+            $user = User::find($id);
+            $user->introduction = $request->introduction;
+            $user->save();
+            return redirect()->route("user.show", $user->id);
+    }
+
+    // Avatarのみ編集
+    public function editAvatar($id)
+    {
+        $user = User::find($id);
+        return view('user.edit-avatar', compact('user'));   
+    }
+
+    public function updateAvatar(Request $request, $id)
+    {
+        $avatar = $request->file('avatar')->getClientOriginalName();
+        $request->file('avatar')->storeAs('public/images', $avatar);
+        $request->validate([
+            'avatar' => ['nullable', 'image'],
+        ]);
+            $user = User::find($id);
+            $user->avatar = $avatar;
+            $user->save();
+            return redirect()->route("user.show", $user->id);
     }
 }

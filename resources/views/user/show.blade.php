@@ -5,11 +5,12 @@
     <div class="container px-5 py-12 mx-auto">
       <div class="lg:h-full mx-auto flex sm:flex-col sm:items-center md:flex-row">
         <div class="sm:w-96 md:w-60 lg:w-96 md:h-60 lg:h-96">
-          <img alt="profile-image" class="w-full h-full object-cover object-center rounded-full" src="{{ asset('storage/images/'.$user->avatar) }}">
+          <a href="{{ route('user.editAvatar', $user->id) }}" class="ml-5 mb-1"><img alt="profile-image" class="w-full h-full object-cover object-center rounded-full" src="{{ asset('storage/images/'.$user->avatar) }}"></a>
         </div>
       
         <div class="lg:w-4/6 lg:py-6 pl-5 mt-6 mb-3 lg:mt-0"> 
-          <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{ $user->name }}</h1>
+          <h1 class="text-gray-900 text-3xl title-font font-medium">{{ $user->name }}</h1>
+          <a href="{{ route('user.edit', $user->id) }}" class="ml-5 mb-1"><h2>Edit Profile</h2></a>
           <div class="flex">
             <span class="flex items-center">
               <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24">
@@ -66,7 +67,10 @@
 
             {{-- 自己紹介 --}}
           <div>
-            <p>introduction</p>
+            <div class="flex">
+              <p>introduction</p>
+              <a href="{{ route('user.editIntroduction', $user->id) }}" class="ml-5"><h2>Edit introduction</h2></a>
+            </div>
             <p class="leading-relaxed">{{ $user->introduction }}</p>
           </div>
         </div>
