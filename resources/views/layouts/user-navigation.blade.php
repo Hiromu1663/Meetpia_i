@@ -123,16 +123,26 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <!-- Authentication -->
-                        <form method="POST" action="{{ route('user.logout') }}">
-                            @csrf
+                        <ul>
+                            <li><!-- Authentication -->
+                                <form method="POST" action="{{ route('user.logout') }}">
+                                    @csrf
+        
+                                    <x-dropdown-link :href="route('user.logout')"
+                                            onclick="event.preventDefault();
+                                                        this.closest('form').submit();">
+                                        {{ __('Log Out') }}
+                                    </x-dropdown-link>
+                                </form>
+                            </li>
+                            <li>
+                                <x-dropdown-link :href="route('user.show', Auth::id())">
+                                        {{ __('My Page') }}
+                                    </x-dropdown-link>
+                            </li>
 
-                            <x-dropdown-link :href="route('user.logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
-                        </form>
+                        </ul>
+                        
                     </x-slot>
                 </x-dropdown>
             </div>

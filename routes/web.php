@@ -47,10 +47,16 @@ Route::prefix('user')
     Route::post('/', 'store')->name('store');
     Route::get('/show/{id}', 'show')->name('show');
     Route::get('/edit/{id}', 'edit')->name('edit');
-    Route::post('/{id}', 'update')->name('update');
-    Route::post('/destroy/{id}', 'destroy')->name('destroy');
+    Route::put('/update/{id}', 'update')->name('update');
+    Route::delete('/destroy/{id}', 'destroy')->name('destroy');
 
     Route::get('/show-project/{id}', 'showProject')->name('show-project');
+    // Introductionのみ編集
+    Route::get('/editIntroduction/{id}', 'editIntroduction')->name('editIntroduction');
+    Route::put('/updateIntroduction/{id}', 'updateIntroduction')->name('updateIntroduction');
+    // Avatarのみ編集
+    Route::get('/editAvatar/{id}', 'editAvatar')->name('editAvatar');
+    Route::put('/updateAvatar/{id}', 'updateAvatar')->name('updateAvatar');
 });
 
 Route::get('/dashboard', function () {
