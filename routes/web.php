@@ -4,6 +4,11 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\User\BusinessController;
+use App\Http\Controllers\User\HobbyController;
+use App\Http\Controllers\User\StudyController;
+use App\Http\Controllers\User\TradeController;
+use App\Http\Controllers\User\OthersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,8 +54,12 @@ Route::prefix('user')
     Route::get('/edit/{id}', 'edit')->name('edit');
     Route::put('/update/{id}', 'update')->name('update');
     Route::delete('/destroy/{id}', 'destroy')->name('destroy');
-
+    // Projectの詳細表示
     Route::get('/show-project/{id}', 'showProject')->name('show-project');
+    // Projectの編集,削除
+    Route::get('/edit-project/{id}', 'editProject')->name('edit-project');
+    Route::put('/update-project/{id}', 'updateProject')->name('update-project');
+    Route::delete('/destroy/{id}', 'destroyProject')->name('destroy-project');
     // Introductionのみ編集
     Route::get('/editIntroduction/{id}', 'editIntroduction')->name('editIntroduction');
     Route::put('/updateIntroduction/{id}', 'updateIntroduction')->name('updateIntroduction');
@@ -59,10 +68,89 @@ Route::prefix('user')
     Route::put('/updateAvatar/{id}', 'updateAvatar')->name('updateAvatar');
 });
 
+Route::prefix('user_business')
+->middleware('auth:users')
+->name('business.')
+->controller(BusinessController::class)
+->group(function(){
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/', 'store')->name('store');
+    Route::get('/show/{id}', 'show')->name('show');
+    Route::get('/edit/{id}', 'edit')->name('edit');
+    Route::post('/{id}', 'update')->name('update');
+    Route::post('/destroy/{id}', 'destroy')->name('destroy');
+
+    // Route::get('/show-project/{id}', 'showProject')->name('show-project');
+});
+
+Route::prefix('user_hobby')
+->middleware('auth:users')
+->name('hobby.')
+->controller(HobbyController::class)
+->group(function(){
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/', 'store')->name('store');
+    Route::get('/show/{id}', 'show')->name('show');
+    Route::get('/edit/{id}', 'edit')->name('edit');
+    Route::post('/{id}', 'update')->name('update');
+    Route::post('/destroy/{id}', 'destroy')->name('destroy');
+
+    // Route::get('/show-project/{id}', 'showProject')->name('show-project');
+});
+
+Route::prefix('user_study')
+->middleware('auth:users')
+->name('study.')
+->controller(StudyController::class)
+->group(function(){
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/', 'store')->name('store');
+    Route::get('/show/{id}', 'show')->name('show');
+    Route::get('/edit/{id}', 'edit')->name('edit');
+    Route::post('/{id}', 'update')->name('update');
+    Route::post('/destroy/{id}', 'destroy')->name('destroy');
+
+    // Route::get('/show-project/{id}', 'showProject')->name('show-project');
+});
+
+Route::prefix('user_trade')
+->middleware('auth:users')
+->name('trade.')
+->controller(TradeController::class)
+->group(function(){
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/', 'store')->name('store');
+    Route::get('/show/{id}', 'show')->name('show');
+    Route::get('/edit/{id}', 'edit')->name('edit');
+    Route::post('/{id}', 'update')->name('update');
+    Route::post('/destroy/{id}', 'destroy')->name('destroy');
+
+    // Route::get('/show-project/{id}', 'showProject')->name('show-project');
+});
+
+Route::prefix('user_others')
+->middleware('auth:users')
+->name('others.')
+->controller(OthersController::class)
+->group(function(){
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/', 'store')->name('store');
+    Route::get('/show/{id}', 'show')->name('show');
+    Route::get('/edit/{id}', 'edit')->name('edit');
+    Route::post('/{id}', 'update')->name('update');
+    Route::post('/destroy/{id}', 'destroy')->name('destroy');
+
+    // Route::get('/show-project/{id}', 'showProject')->name('show-project');
+});
+
 Route::get('/dashboard', function () {
     return view('user.dashboard');
 })->middleware(['auth:users'])->name('dashboard');
 
 require __DIR__.'/auth.php';
-
 

@@ -114,6 +114,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id)
     {
         $user = User::find($id);
@@ -134,7 +135,6 @@ class UserController extends Controller
             'introduction' => ['nullable', 'text'],
             'new_password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
             $user->name = $request->name;
             $user->email = $request->email;
             $user->phoneNumber = $request->phoneNumber;
@@ -149,7 +149,6 @@ class UserController extends Controller
             $user->save();
 
             return redirect()->route("user.show", $user->id);
-        
     }
 
 
@@ -165,18 +164,57 @@ class UserController extends Controller
         //
     }
 
-    //Project詳細表示
+    //Project関係
     public function showProject($id)
     {
         $project = Project::find($id);
         return view('user.show-project', compact('project'));
     }
+  
+    public function editProject($id)
+    {
+        $project = Project::find($id);
+        return view("user.edit-project", compact('project'));
+    }
 
+    public function updateProject(Request $request, $id)
+    {
+        // dd($id);
+        
+        $image = uniqid() . '_' . time() . '.' . $request->file('image')->getClientOriginalExtension();
+    
+        $request->file('image')->storeAs('public/images',$image);
+    
+        $request->validate([
+            "title" => ["required", "string"],
+            "contents" => ["required", "string"],
+            "image" => ["nullable", "image"],
+            'genre' => ['required', 'string', 'in:Business,Hobby,Study,Trade,Others'],
+            'start_time' => ['required'],
+            'end_time' => ['required', 'after:start_time'],
+            'location' => ['nullable', 'string'],
+        ]);
+    
+        $project = Project::find($id);
+        $project->title = $request->title;
+        $project->contents = $request->contents;
+        $project->image = $image;
+        $project->genre = $request->genre;
+        $project->start_time = $request->start_time;
+        $project->end_time = $request->end_time; 
+        $project->location = $request->location;
+        $project->save();
 
+        return redirect()->route("user.show-project", $project->id);
+    }
 
-
-
-    // Introductionのみ編集
+    public function destroyProject($id)
+    {
+        Project::find($id)->delete();
+        return redirect()->route("user.index");
+    }
+  
+   // Introductionのみ編集
     public function editIntroduction($id)
     {
         $user = User::find($id);
@@ -214,4 +252,3 @@ class UserController extends Controller
             return redirect()->route("user.show", $user->id);
     }
 }
-
