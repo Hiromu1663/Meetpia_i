@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Project;
 use Illuminate\Http\Request;
+
 
 class BusinessController extends Controller
 {
@@ -14,7 +16,9 @@ class BusinessController extends Controller
      */
     public function index()
     {
-        //
+        $projects = Project::where('genre', 'business')->get();
+
+        return view('user.business.index', compact('projects'));
     }
 
     /**
@@ -24,7 +28,7 @@ class BusinessController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.create');
     }
 
     /**
@@ -46,7 +50,7 @@ class BusinessController extends Controller
      */
     public function show($id)
     {
-        //
+        // 不要
     }
 
     /**
@@ -57,7 +61,7 @@ class BusinessController extends Controller
      */
     public function edit($id)
     {
-        //
+        // 不要
     }
 
     /**
@@ -69,7 +73,7 @@ class BusinessController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // 不要
     }
 
     /**
@@ -81,5 +85,11 @@ class BusinessController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function showProject($id)
+    {
+        $project = Project::find($id);
+        return view('user.show-project', compact('project'));
     }
 }
