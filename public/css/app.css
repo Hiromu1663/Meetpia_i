@@ -562,8 +562,6 @@ video {
   margin-left: 0.75rem;
 }.ml-4 {
   margin-left: 1rem;
-}.ml-6 {
-  margin-left: 1.5rem;
 }.ml-auto {
   margin-left: auto;
 }.mr-1 {
@@ -612,6 +610,10 @@ video {
   height: 2.5rem;
 }.h-16 {
   height: 4rem;
+}.h-2 {
+  height: 0.5rem;
+}.h-2\.5 {
+  height: 0.625rem;
 }.h-20 {
   height: 5rem;
 }.h-3 {
@@ -646,6 +648,10 @@ video {
   width: 2.5rem;
 }.w-16 {
   width: 4rem;
+}.w-2 {
+  width: 0.5rem;
+}.w-2\.5 {
+  width: 0.625rem;
 }.w-2\/3 {
   width: 66.666667%;
 }.w-20 {
@@ -688,6 +694,8 @@ video {
   max-width: 36rem;
 }.flex-1 {
   flex: 1 1 0%;
+}.flex-none {
+  flex: none;
 }.flex-shrink-0 {
   flex-shrink: 0;
 }.shrink-0 {
@@ -724,10 +732,6 @@ video {
   list-style-type: disc;
 }.list-none {
   list-style-type: none;
-}.appearance-none {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
 }.grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }.flex-row {
@@ -858,15 +862,9 @@ video {
 }.bg-gray-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
-}.bg-gray-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }.bg-gray-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
-}.bg-gray-700 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
 }.bg-gray-800 {
   --tw-bg-opacity: 1;
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
@@ -892,8 +890,6 @@ video {
 }.object-center {
   -o-object-position: center;
      object-position: center;
-}.p-0 {
-  padding: 0px;
 }.p-1 {
   padding: 0.25rem;
 }.p-1\.5 {
@@ -977,8 +973,6 @@ video {
   padding-left: 1.25rem;
 }.pl-6 {
   padding-left: 1.5rem;
-}.pr-10 {
-  padding-right: 2.5rem;
 }.pr-3 {
   padding-right: 0.75rem;
 }.pr-4 {
@@ -1177,6 +1171,10 @@ video {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }.ease-out {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}.\[--adaptive\:none\] {
+  --adaptive: none;
+}.\[--strategy\:static\] {
+  --strategy: static;
 }.before\:absolute::before {
   content: var(--tw-content);
   position: absolute;
@@ -1441,6 +1439,10 @@ video {
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }.sm\:duration-\[150ms\] {
     transition-duration: 150ms;
+  }.sm\:\[--strategy\:absolute\] {
+    --strategy: absolute;
+  }.sm\:\[--trigger\:hover\] {
+    --trigger: hover;
   }@media (prefers-color-scheme: dark) {.sm\:dark\:border {
       border-width: 1px;
     }
