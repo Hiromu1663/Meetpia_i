@@ -158,14 +158,37 @@ class UserController extends Controller
         ]);
     
         $project = Project::find($id);
-        $project->title = $request->title;
-        $project->contents = $request->contents;
-        $project->image = $image;
-        $project->genre = $request->genre;
-        $project->start_time = $request->start_time;
-        $project->end_time = $request->end_time; 
-        $project->location = $request->location;
-        $project->save();
+        // $project->title = $request->title;
+        // $project->contents = $request->contents;
+        // $project->image = $image;
+        // $project->genre = $request->genre;
+        // $project->start_time = $request->start_time;
+        // $project->end_time = $request->end_time; 
+        // $project->location = $request->location;
+        // $project->save();
+
+        if ($request->hasFile('image')) { //画像がアップロードありの処理
+            $image = $request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('public/images', $image);
+            $project->title = $request->title;
+            $project->contents = $request->contents;
+            $project->image = $image;
+            $project->genre = $request->genre;
+            $project->start_time = $request->start_time;
+            $project->end_time = $request->end_time; 
+            $project->location = $request->location;
+
+            $project->save();
+        }else{ //画像のアップロードなしの処理
+            $project->title = $request->title;
+            $project->contents = $request->contents;
+            $project->genre = $request->genre;
+            $project->start_time = $request->start_time;
+            $project->end_time = $request->end_time; 
+            $project->location = $request->location;
+
+            $project->save();
+        }
 
         return redirect()->route("user.show-project", $project->id);
     }
