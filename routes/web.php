@@ -39,7 +39,6 @@ Route::get('/', function () {
 });
 
 Route::prefix('user')
-->name('user.')
 ->middleware('auth:users')
 ->controller(UserController::class)
 ->group(function(){
@@ -48,10 +47,13 @@ Route::prefix('user')
     Route::post('/', 'store')->name('store');
     Route::get('/show/{id}', 'show')->name('show');
     Route::get('/edit/{id}', 'edit')->name('edit');
-    Route::post('/{id}', 'update')->name('update');
-    Route::post('/destroy/{id}', 'destroy')->name('destroy');
+    Route::put('/update/{id}', 'update')->name('update');
+    Route::delete('/destroy/{id}', 'destroy')->name('destroy');
 
     Route::get('/show-project/{id}', 'showProject')->name('show-project');
+    Route::get('/edit-project/{id}', 'editProject')->name('edit-project');
+    Route::put('/update-project/{id}', 'updateProject')->name('update-project');
+    Route::delete('/destroy/{id}', 'destroyProject')->name('destroy-project');
 });
 
 Route::get('/dashboard', function () {
@@ -59,5 +61,4 @@ Route::get('/dashboard', function () {
 })->middleware(['auth:users'])->name('dashboard');
 
 require __DIR__.'/auth.php';
-
 

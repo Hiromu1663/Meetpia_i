@@ -108,9 +108,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id)
     {
-        //
+        // 
     }
 
     /**
@@ -124,11 +125,42 @@ class UserController extends Controller
         //
     }
 
-    //Project詳細表示
+    //Project関係
     public function showProject($id)
     {
         $project = Project::find($id);
         return view('user.show-project', compact('project'));
     }
 
+    public function editProject($id)
+    {
+        $project = Project::find($id);
+        return view("user.edit-project", compact('project'));
+    }
+
+    public function updateProject(Request $request, $id)
+    {
+        // dd($id);
+        
+        $image = uniqid() . '_' . time() . '.' . $request->file('image')->getClientOriginalExtension();
+    
+        $request->file('image')->storeAs('public/images',$image);
+    
+        $request->validate([
+            "title" => ["required", "string", "max:30"],
+            "contents" => ["required", "string", "max:140"],
+        ]);
+    
+        $project = Project::find($id);
+        $project->title = $request->title;
+        $project->contents = $request->contents;
+        $project->image = $image;
+        $project->genre = $request->genre;
+        $project->start_time = $request->start_time;
+        $project->end_time = $request->end_time; 
+        $project->location = $request->location;
+        $project->save();
+
+        return redirect()->route("user.show-project", ['id' => $project->id]);
+    }
 }
