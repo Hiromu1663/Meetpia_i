@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class TradeController extends Controller
@@ -14,7 +15,9 @@ class TradeController extends Controller
      */
     public function index()
     {
-        //
+        $projects = Project::where('genre', 'trade')->get();
+
+        return view('user.trade.index', compact('projects'));
     }
 
     /**
@@ -24,7 +27,7 @@ class TradeController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.create');
     }
 
     /**
