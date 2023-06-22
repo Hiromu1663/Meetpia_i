@@ -47,8 +47,8 @@ Route::prefix('user')
     Route::post('/', 'store')->name('store');
     Route::get('/show/{id}', 'show')->name('show');
     Route::get('/edit/{id}', 'edit')->name('edit');
-    Route::put('/update/{id}', 'update')->name('update');
-    Route::delete('/destroy/{id}', 'destroy')->name('destroy');
+    Route::post('/update/{id}', 'update')->name('update');
+    Route::post('/destroy/{id}', 'destroy')->name('destroy');
 
     Route::get('/show-project/{id}', 'showProject')->name('show-project');
     Route::get('/edit-project/{id}', 'editProject')->name('edit-project');
