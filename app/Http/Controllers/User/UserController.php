@@ -147,8 +147,13 @@ class UserController extends Controller
         $request->file('image')->storeAs('public/images',$image);
     
         $request->validate([
-            "title" => ["required", "string", "max:30"],
-            "contents" => ["required", "string", "max:140"],
+            "title" => ["required", "string"],
+            "contents" => ["required", "string"],
+            "image" => ["nullable", "image"],
+            'genre' => ['required', 'string', 'in:Business,Hobby,Study,Trade,Others'],
+            'start_time' => ['required'],
+            'end_time' => ['required', 'after:start_time'],
+            'location' => ['nullable', 'string'],
         ]);
     
         $project = Project::find($id);
