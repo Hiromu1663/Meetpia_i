@@ -166,6 +166,6 @@ class UserController extends Controller
         $project->location = $request->location;
         $project->save();
 
-        return redirect()->route("user.show-project", ['id' => $project->id]);
+        return redirect()->route("user.show-project", $project->id);
     }
 }
