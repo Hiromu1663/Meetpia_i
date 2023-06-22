@@ -83,7 +83,7 @@
                 </a> --}}
   
                 <x-button class="ml-4">
-                    {{ __('Edit') }}
+                    {{ __('Update') }}
                 </x-button>
             </div>
         </form>
