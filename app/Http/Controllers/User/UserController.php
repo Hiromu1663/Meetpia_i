@@ -163,4 +163,10 @@ class UserController extends Controller
 
         return redirect()->route("user.show-project", ['id' => $project->id]);
     }
+
+    public function destroyProject($id)
+    {
+        Project::find($id)->delete();
+        return redirect()->route("user.index");
+    }
 }
