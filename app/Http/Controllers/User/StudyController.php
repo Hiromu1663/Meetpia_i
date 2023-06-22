@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class StudyController extends Controller
@@ -14,7 +15,9 @@ class StudyController extends Controller
      */
     public function index()
     {
-        //
+        $projects = Project::where('genre', 'study')->get();
+
+        return view('user.study.index', compact('projects'));
     }
 
     /**
@@ -24,7 +27,7 @@ class StudyController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.create');
     }
 
     /**

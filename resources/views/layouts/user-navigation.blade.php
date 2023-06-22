@@ -79,16 +79,16 @@
                                                 <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-white focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-white dark:hover:text-gray-300" href="{{ route('user.business.index') }}">
                                                 Business
                                                 </a>
-                                                <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-white focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-white dark:hover:text-gray-300" href="#">
+                                                <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-white focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-white dark:hover:text-gray-300" href="{{ route('user.hobby.index') }}">
                                                 Hobby
                                                 </a>
-                                                <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-white focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-white dark:hover:text-gray-300" href="#">
+                                                <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-white focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-white dark:hover:text-gray-300" href="{{ route('user.study.index') }}">
                                                 Study
                                                 </a>
-                                                <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-white focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-white dark:hover:text-gray-300" href="#">
+                                                <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-white focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-white dark:hover:text-gray-300" href="{{ route('user.trade.index') }}">
                                                 Trade
                                                 </a>
-                                                <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-white focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-white dark:hover:text-gray-300" href="#">
+                                                <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-white focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-white dark:hover:text-gray-300" href="{{ route('user.others.index') }}">
                                                 Others
                                                 </a>
                                             {{-- </div> --}}
