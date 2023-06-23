@@ -15,7 +15,7 @@
           Edit Introduction
           <div class="mt-4">
             <label for="introduction" class="font-medium text-sm text-gray-700 block">Introduction</label>
-            <textarea id="introduction" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block" name="introduction" cols="42" rows="5"></textarea>
+            <textarea id="introduction" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block" name="introduction" cols="42" rows="5">{{ $user->introduction }}</textarea>
           </div>
 
           <div class="flex items-center justify-end mt-4">
