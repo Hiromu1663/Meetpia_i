@@ -21,8 +21,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        // 最新４件まで取得
+        // 最新6件まで取得
         $projects = Project::orderBy('created_at', 'DESC')->take(6)->get();
+       
         return view('user.index', compact('projects'));
     }
 
@@ -44,8 +45,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        // $image_at = uniqid() . '_' . time() . '.' . $request->file('image_at')->getClientOriginalExtension();
-        // dd($request);
         $image = $request->file('image')->getClientOriginalName();
         $request->file('image')->storeAs('public/images', $image);
         $request->validate([
@@ -92,6 +91,7 @@ class UserController extends Controller
         $age--; // 誕生日が来ていない場合は年齢を1つ引く
         }
         $projects = Project::where('user_id', $id)->get();
+       
         return view('user.show', compact('user', 'projects', 'age'));
     }
 
@@ -104,6 +104,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
+       
         return view('user.edit', compact('user'));
     }
 
@@ -147,11 +148,9 @@ class UserController extends Controller
             $user->introduction = $request->introduction;
             $user->password = Hash::make($request->new_password);
             $user->save();
-
+           
             return redirect()->route("user.show", $user->id);
     }
-
-
 
     /**
      * Remove the specified resource from storage.
@@ -168,23 +167,19 @@ class UserController extends Controller
     public function showProject($id)
     {
         $project = Project::find($id);
+        
         return view('user.show-project', compact('project'));
     }
   
     public function editProject($id)
     {
         $project = Project::find($id);
+       
         return view("user.edit-project", compact('project'));
     }
 
     public function updateProject(Request $request, $id)
     {
-        // dd($id);
-        
-        $image = uniqid() . '_' . time() . '.' . $request->file('image')->getClientOriginalExtension();
-    
-        $request->file('image')->storeAs('public/images',$image);
-    
         $request->validate([
             "title" => ["required", "string"],
             "contents" => ["required", "string"],
@@ -194,46 +189,27 @@ class UserController extends Controller
             'end_time' => ['required', 'after:start_time'],
             'location' => ['nullable', 'string'],
         ]);
-    
         $project = Project::find($id);
-        // $project->title = $request->title;
-        // $project->contents = $request->contents;
-        // $project->image = $image;
-        // $project->genre = $request->genre;
-        // $project->start_time = $request->start_time;
-        // $project->end_time = $request->end_time; 
-        // $project->location = $request->location;
-        // $project->save();
-
         if ($request->hasFile('image')) { //画像がアップロードありの処理
             $image = $request->file('image')->getClientOriginalName();
             $request->file('image')->storeAs('public/images', $image);
-            $project->title = $request->title;
-            $project->contents = $request->contents;
             $project->image = $image;
-            $project->genre = $request->genre;
-            $project->start_time = $request->start_time;
-            $project->end_time = $request->end_time; 
-            $project->location = $request->location;
-
-            $project->save();
-        }else{ //画像のアップロードなしの処理
+        }
             $project->title = $request->title;
             $project->contents = $request->contents;
             $project->genre = $request->genre;
             $project->start_time = $request->start_time;
             $project->end_time = $request->end_time; 
             $project->location = $request->location;
-
             $project->save();
-        }
-
-        return redirect()->route("user.show-project", $project->id);
+       
+            return redirect()->route("user.show-project", $project->id);
     }
 
     public function destroyProject($id)
     {
         Project::find($id)->delete();
+     
         return redirect()->route("user.index");
     }
   
@@ -241,6 +217,7 @@ class UserController extends Controller
     public function editIntroduction($id)
     {
         $user = User::find($id);
+       
         return view('user.edit-introduction', compact('user'));   
     }
 
@@ -252,6 +229,7 @@ class UserController extends Controller
             $user = User::find($id);
             $user->introduction = $request->introduction;
             $user->save();
+         
             return redirect()->route("user.show", $user->id);
     }
 
@@ -259,19 +237,23 @@ class UserController extends Controller
     public function editAvatar($id)
     {
         $user = User::find($id);
+      
         return view('user.edit-avatar', compact('user'));   
     }
 
     public function updateAvatar(Request $request, $id)
     {
-        $avatar = $request->file('avatar')->getClientOriginalName();
-        $request->file('avatar')->storeAs('public/images', $avatar);
         $request->validate([
             'avatar' => ['nullable', 'image'],
         ]);
-            $user = User::find($id);
+        $user = User::find($id);
+        if ($request->hasFile('avatar')) { //画像がアップロードありの処理
+            $avatar = $request->file('avatar')->getClientOriginalName();
+            $request->file('avatar')->storeAs('public/images', $avatar);
             $user->avatar = $avatar;
             $user->save();
-            return redirect()->route("user.show", $user->id);
+        }
+          
+        return redirect()->route("user.show", $user->id);
     }
 }

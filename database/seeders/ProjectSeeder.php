@@ -64,7 +64,7 @@ class ProjectSeeder extends Seeder
             [
                 'title' => 'test',
                 'contents' => 'test',
-                'image' => '1.jpg',
+                'image' => '2.jpg',
                 'user_id' => 1,
                 'genre' => 'Hobby',
                 'start_time' => '2023/01/01 11:11:11',
@@ -75,7 +75,7 @@ class ProjectSeeder extends Seeder
             [
                 'title' => 'test2',
                 'contents' => 'test2',
-                'image' => '2.jpg',
+                'image' => '3.jpg',
                 'user_id' => 2,
                 'genre' => 'Hobby',
                 'start_time' => '2023/01/02 11:11:11',
@@ -86,7 +86,7 @@ class ProjectSeeder extends Seeder
             [
                 'title' => 'test3',
                 'contents' => 'test3',
-                'image' => '3.jpg',
+                'image' => '4.jpg',
                 'user_id' => 3,
                 'genre' => 'Hobby',
                 'start_time' => '2023/01/03 11:11:11',
@@ -97,7 +97,7 @@ class ProjectSeeder extends Seeder
             [
                 'title' => 'test4',
                 'contents' => 'test4',
-                'image' => '4.jpg',
+                'image' => '1.jpg',
                 'user_id' => 4,
                 'genre' => 'Hobby',
                 'start_time' => '2023/01/04 11:11:11',
@@ -109,7 +109,7 @@ class ProjectSeeder extends Seeder
             [
                 'title' => 'test',
                 'contents' => 'test',
-                'image' => '1.jpg',
+                'image' => '3.jpg',
                 'user_id' => 1,
                 'genre' => 'Study',
                 'start_time' => '2023/01/01 11:11:11',
@@ -120,7 +120,7 @@ class ProjectSeeder extends Seeder
             [
                 'title' => 'test2',
                 'contents' => 'test2',
-                'image' => '2.jpg',
+                'image' => '4.jpg',
                 'user_id' => 2,
                 'genre' => 'Study',
                 'start_time' => '2023/01/02 11:11:11',
@@ -131,7 +131,7 @@ class ProjectSeeder extends Seeder
             [
                 'title' => 'test3',
                 'contents' => 'test3',
-                'image' => '3.jpg',
+                'image' => '1.jpg',
                 'user_id' => 3,
                 'genre' => 'Study',
                 'start_time' => '2023/01/03 11:11:11',
@@ -142,7 +142,7 @@ class ProjectSeeder extends Seeder
             [
                 'title' => 'test4',
                 'contents' => 'test4',
-                'image' => '4.jpg',
+                'image' => '2.jpg',
                 'user_id' => 4,
                 'genre' => 'Study',
                 'start_time' => '2023/01/04 11:11:11',
@@ -154,7 +154,7 @@ class ProjectSeeder extends Seeder
             [
                 'title' => 'test',
                 'contents' => 'test',
-                'image' => '1.jpg',
+                'image' => '4.jpg',
                 'user_id' => 1,
                 'genre' => 'Trade',
                 'start_time' => '2023/01/01 11:11:11',
@@ -165,7 +165,7 @@ class ProjectSeeder extends Seeder
             [
                 'title' => 'test2',
                 'contents' => 'test2',
-                'image' => '2.jpg',
+                'image' => '1.jpg',
                 'user_id' => 2,
                 'genre' => 'Trade',
                 'start_time' => '2023/01/02 11:11:11',
@@ -176,7 +176,7 @@ class ProjectSeeder extends Seeder
             [
                 'title' => 'test3',
                 'contents' => 'test3',
-                'image' => '3.jpg',
+                'image' => '2.jpg',
                 'user_id' => 3,
                 'genre' => 'Trade',
                 'start_time' => '2023/01/03 11:11:11',
@@ -187,7 +187,7 @@ class ProjectSeeder extends Seeder
             [
                 'title' => 'test4',
                 'contents' => 'test4',
-                'image' => '4.jpg',
+                'image' => '3.jpg',
                 'user_id' => 4,
                 'genre' => 'Trade',
                 'start_time' => '2023/01/04 11:11:11',
