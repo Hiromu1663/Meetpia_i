@@ -16,6 +16,7 @@
           <!--avatar-->
           <div class="mt-4">
             <x-label for="avatar" :value="__('Avatar')" />
+            <img src={{ asset('storage/images/'.$user->avatar) }} alt="team" class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4">
             <x-input id="avatar" class="block mt-1 w-full" type="file" name="avatar" value="{{ $user->avatar }}" />
           </div>
 
