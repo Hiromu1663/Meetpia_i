@@ -35,7 +35,9 @@ class AuthenticatedSessionController extends Controller
 
         Log::debug('user', $request->session()->all());
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        // return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect()->route('user.index');
+
     }
 
     /**
