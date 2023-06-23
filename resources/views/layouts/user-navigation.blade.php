@@ -50,6 +50,9 @@
 
                         <a class="font-medium text-gray-400 dark:hover:text-gray-500" href="{{ route('user.create') }}" aria-current="page">Create</a>
 
+
+                        <a class="font-medium text-gray-400 dark:hover:text-gray-500" href="{{ route('user.index') }}" aria-current="page">All Events</a>
+
                         <!-- Settings Dropdown -->
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
                             <x-dropdown align="right" width="48">
