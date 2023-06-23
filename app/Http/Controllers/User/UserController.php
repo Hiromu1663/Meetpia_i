@@ -123,7 +123,20 @@ class UserController extends Controller
         if (!Hash::check($request->current_password, $user->password)) {
             return redirect()->back()->withErrors(['current_password' => 'The current password is incorrect.']);
         }
-        $request->validate([
+        // $request->validate([
+        //     'name' => ['required', 'string', 'max:255'],
+        //     'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+        //     'phoneNumber' => ['required', 'string', Rule::unique('users')->ignore($user->id)],
+        //     'gender' => ['required', 'string'],
+        //     'birth_year' => ['required', 'integer'],
+        //     'birth_month' => ['required', 'integer'],
+        //     'birth_day' => ['required', 'integer'],
+        //     'address' => ['required', 'string'],
+        //     'status' => ['required', 'string', 'in:Employee,Civil Servant,Self-employed,Student,Artist,Doctor,Lawyer,Teacher,Engineer,Salesperson,Other,test'],
+        //     'introduction' => ['nullable', 'text'],
+        //     'new_password' => ['required', 'confirmed', Rules\Password::defaults()],
+        // ]);
+        $rules = [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'phoneNumber' => ['required', 'string', Rule::unique('users')->ignore($user->id)],
@@ -134,8 +147,17 @@ class UserController extends Controller
             'address' => ['required', 'string'],
             'status' => ['required', 'string', 'in:Employee,Civil Servant,Self-employed,Student,Artist,Doctor,Lawyer,Teacher,Engineer,Salesperson,Other,test'],
             'introduction' => ['nullable', 'text'],
-            'new_password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        ];
+        
+        if ($request->filled('new_password')) {
+            $rules['new_password'] = ['required', 'confirmed', Rules\Password::defaults()];
+        }
+        
+        $request->validate($rules);
+        
+
+
+
             $user->name = $request->name;
             $user->email = $request->email;
             $user->phoneNumber = $request->phoneNumber;
@@ -146,7 +168,9 @@ class UserController extends Controller
             $user->address = $request->address;
             $user->status = $request->status;
             $user->introduction = $request->introduction;
+            if ($request->filled('new_password')) {
             $user->password = Hash::make($request->new_password);
+            }
             $user->save();
            
             return redirect()->route("user.show", $user->id);

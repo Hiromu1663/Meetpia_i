@@ -123,13 +123,13 @@
             <!-- 新しいパスワード -->
             <div class="mt-4">
                 <x-label for="new_password" :value="__('New Password')" />
-                <x-input id="new_password" class="block mt-1 w-full" type="password" name="new_password" required />
+                <x-input id="new_password" class="block mt-1 w-full" type="password" name="new_password" />
             </div>
 
             <!-- 新しいパスワードの確認 -->
             <div class="mt-4">
                 <x-label for="new_password_confirmation" :value="__('Confirm New Password')" />
-                <x-input id="new_password_confirmation" class="block mt-1 w-full" type="password" name="new_password_confirmation" required />
+                <x-input id="new_password_confirmation" class="block mt-1 w-full" type="password" name="new_password_confirmation" />
             </div>
 
 
