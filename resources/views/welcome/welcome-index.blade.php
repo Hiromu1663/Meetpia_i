@@ -229,7 +229,7 @@
       <section class="text-gray-600 body-font">
         <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
           <div class="text-center lg:w-2/3 w-full">
-            <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Describe of This App</h1>
+            <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Description of This App</h1>
             <p class="mb-8 leading-relaxed">Meetpia is app as purpose on international interaction to exchange language and create business event between Japanese and non-natives.
               Our purpose of invention on Meetpia is to open various events, promote Cebu’s life and career through this app. </p>
                 <button class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg"><a href="{{ url('/login') }}">Login</a></button>
