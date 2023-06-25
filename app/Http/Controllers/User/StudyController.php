@@ -13,11 +13,21 @@ class StudyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $projects = Project::where('genre', 'study')->get();
+        $search = $request->search;
 
-        return view('user.study.index', compact('projects'));
+        if ($search !== null) {
+            // 検索がある場合の処理
+            $query = Project::search($search)->orderBy('created_at', 'DESC');
+            $study = $query->where('genre', 'Study')->get();
+        } else {
+            // 検索がない場合の処理
+            $study = Project::where('genre', 'Study')->get();
+        }
+
+        return view('user.study.index', compact('study'));
+
     }
 
     /**

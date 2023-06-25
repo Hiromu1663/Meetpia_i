@@ -14,11 +14,21 @@ class BusinessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $projects = Project::where('genre', 'business')->get();
+        $search = $request->search;
 
-        return view('user.business.index', compact('projects'));
+        if ($search !== null) {
+            // 検索がある場合の処理
+            $query = Project::search($search)->orderBy('created_at', 'DESC');
+            $business = $query->where('genre', 'Business')->get();
+        } else {
+            // 検索がない場合の処理
+            $business = Project::where('genre', 'Business')->get();
+        }
+
+        return view('user.business.index', compact('business'));
+
     }
 
     /**

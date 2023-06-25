@@ -19,12 +19,33 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // 最新6件まで取得
-        $projects = Project::orderBy('created_at', 'DESC')->take(6)->get();
-       
-        return view('user.index', compact('projects'));
+        $search = $request->search;
+
+        if ($search !== null) {
+            // 検索がある場合の処理
+            $query = Project::search($search)->orderBy('created_at', 'DESC');
+            $projects = $query->take(8)->get();
+        
+            $business = Project::where('genre', 'Business')->search($search)->take(6)->get();
+            $hobbies = Project::where('genre', 'Hobby')->search($search)->take(6)->get();
+            $study = Project::where('genre', 'Study')->search($search)->take(6)->get();
+            $trades = Project::where('genre', 'Trade')->search($search)->take(6)->get();
+            $others = Project::where('genre', 'Others')->search($search)->take(6)->get();
+        } else {
+            // 検索がない場合の処理
+            $projects = Project::orderBy('created_at', 'DESC')->take(8)->get();
+            $business = Project::where('genre', 'Business')->take(6)->get();
+            $hobbies = Project::where('genre', 'Hobby')->take(6)->get();
+            $study = Project::where('genre', 'Study')->take(6)->get();
+            $trades = Project::where('genre', 'Trade')->take(6)->get();
+            $others = Project::where('genre', 'Others')->take(6)->get();
+
+        }
+        
+        return view('user.index', compact('projects', 'business', 'hobbies', 'trades', 'study', 'others'));  
+
     }
 
     /**
