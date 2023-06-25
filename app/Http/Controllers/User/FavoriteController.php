@@ -1,10 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Models\Favorite;
+use App\Http\Controllers\Controller;
+use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class BookmarkController extends Controller
+class FavoriteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,6 +25,7 @@ class BookmarkController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         //
@@ -32,10 +37,20 @@ class BookmarkController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+   
+        
     public function store(Request $request)
     {
-        //
+       //
     }
+
+
+
+
+
+
+
+
 
     /**
      * Display the specified resource.
@@ -81,4 +96,30 @@ class BookmarkController extends Controller
     {
         //
     }
+
+
+
+        public function toggle($id)
+    {
+        $user_id = Auth::user()->id;
+
+        // すでにブックマークが存在するかチェック
+        $existingFavorite = Favorite::where('project_id', $id)->where('user_id', $user_id)->first();
+
+        if ($existingFavorite) {
+            // ブックマークが存在する場合は削除
+            $existingFavorite->delete();
+        } else {
+            // ブックマークが存在しない場合は新規作成
+            $favorite = new Favorite();
+            $favorite->project_id = $id;
+            $favorite->user_id = $user_id;
+            $favorite->save();
+        }
+
+        return redirect()->route("user.show-project", $id);
+        // return redirect()->back();
+    }
+
 }
+

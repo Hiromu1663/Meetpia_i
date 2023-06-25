@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\WelcomeController;
-use App\Http\Controllers\BookmarkController;
+use App\Http\Controllers\User\FavoriteController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\BusinessController;
@@ -147,6 +147,16 @@ Route::prefix('user_others')
 
     // Route::get('/show-project/{id}', 'showProject')->name('show-project');
 });
+
+
+Route::prefix('favorite')
+->middleware('auth:users')
+->controller(FavoriteController::class)
+->group(function(){
+    Route::get('/toggle/{id}', 'toggle')->name('toggle');
+});
+
+
 
 Route::get('/dashboard', function () {
     return view('user.dashboard');

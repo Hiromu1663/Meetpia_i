@@ -44,6 +44,11 @@ class Project extends Model
         return $this->hasMany('App\Models\Favorite');
     }
 
+    public function favoritedBy($user)
+    {
+        return Favorite::where("user_id", $user->id)->where("project_id", $this->id);
+    }
+  
     public function scopeSearch($query, $search)
     {
         if ($search !== null) {
@@ -80,7 +85,4 @@ class Project extends Model
         
         return $query;
     }
-
-
-    
 }
