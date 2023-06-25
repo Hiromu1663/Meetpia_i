@@ -41,6 +41,17 @@
                       <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
                     </svg>
                   </a> 
+                </span>
+
+                <span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s">
+                  <div class="favorite">
+                    @if($project->favoritedBy(Auth::user())->exists())
+                    <a href="/favorite/toggle/{{ $project->id }}"><i class="fas fa-heart-broken"></i></a>
+                    @else
+                    <a href="/favorite/toggle/{{ $project->id }}"><i class="fas fa-heart"></i></a> 
+                    @endif
+                  </div>
+
                   @if($project->user_id == Auth::user()->id)
                   <a href="{{ route('user.edit-project', $project->id) }}" class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 ml-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Edit</a>
                   <form action="{{ route('user.destroy-project', ['id' => $project->id]) }}" method="POST">
@@ -50,6 +61,8 @@
                   </form>
                   @endif
                 </span>
+                  
+                
               </div>
               <p class="leading-relaxed">{{ $project->contents }}</p>
               <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
