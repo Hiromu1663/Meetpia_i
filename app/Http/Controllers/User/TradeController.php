@@ -13,11 +13,21 @@ class TradeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $projects = Project::where('genre', 'trade')->get();
+        $search = $request->search;
 
-        return view('user.trade.index', compact('projects'));
+        if ($search !== null) {
+            // 検索がある場合の処理
+            $query = Project::search($search)->orderBy('created_at', 'DESC');
+            $trade = $query->where('genre', 'Trade')->get();
+        } else {
+            // 検索がない場合の処理
+            $trade = Project::where('genre', 'Trade')->get();
+        }
+
+        return view('user.trade.index', compact('trade'));
+
     }
 
     /**

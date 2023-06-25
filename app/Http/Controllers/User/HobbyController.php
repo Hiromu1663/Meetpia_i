@@ -13,11 +13,22 @@ class HobbyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $projects = Project::where('genre', 'hobby')->get();
 
-        return view('user.hobby.index', compact('projects'));
+        $search = $request->search;
+
+        if ($search !== null) {
+            // 検索がある場合の処理
+            $query = Project::search($search)->orderBy('created_at', 'DESC');
+            $hobbies = $query->where('genre', 'Hobby')->get();
+        } else {
+            // 検索がない場合の処理
+            $hobbies = Project::where('genre', 'Hobby')->get();
+        }
+
+        return view('user.hobby.index', compact('hobbies'));
+
     }
 
     /**
