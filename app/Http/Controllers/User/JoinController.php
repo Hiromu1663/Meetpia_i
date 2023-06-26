@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Models\Favorite;
+use App\Models\Join;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class FavoriteController extends Controller
+class JoinController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,18 +38,10 @@ class FavoriteController extends Controller
      */
    
         
-    public function store(Request $request)
+    public function store($id)
     {
-       //
+      //
     }
-
-
-
-
-
-
-
-
 
     /**
      * Display the specified resource.
@@ -97,28 +89,26 @@ class FavoriteController extends Controller
     }
 
 
-
-        public function toggle($id)
+    public function toggle($id)
     {
         $user_id = Auth::user()->id;
 
         // すでにブックマークが存在するかチェック
-        $existingFavorite = Favorite::where('project_id', $id)->where('user_id', $user_id)->first();
+        $existingJoin = Join::where('project_id', $id)->where('user_id', $user_id)->first();
 
-        if ($existingFavorite) {
-            // ブックマークが存在する場合は削除
-            $existingFavorite->delete();
+        if ($existingJoin) {
+            // Joinが存在する場合は削除
+            $existingJoin->delete();
         } else {
-            // ブックマークが存在しない場合は新規作成
-            $favorite = new Favorite();
-            $favorite->project_id = $id;
-            $favorite->user_id = $user_id;
-            $favorite->save();
+            // Joinが存在しない場合は新規作成
+            $join = new Join();
+            $join->project_id = $id;
+            $join->user_id = $user_id;
+            $join->save();
         }
 
-        return redirect()->route("user.show-project", $id);
-        // return redirect()->back();
+        // return redirect()->route("user.show-project", $id);
+        return redirect()->back();
     }
-
 }
 

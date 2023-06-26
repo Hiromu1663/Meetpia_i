@@ -165,6 +165,24 @@
                       </div>
                   </div>
                 </div>
+                <div class="flex">
+                  @if ($joinCount < $project->max_number || $project->JoinedBy(Auth::user())->exists())
+                    <div class="join">
+                      @if($project->JoinedBy(Auth::user())->exists())
+                        <a href="/join/toggle/{{ $project->id }}" class="mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Leave</a>
+                      @else
+                        <a href="/join/toggle/{{ $project->id }}" class="mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Join</a> 
+                      @endif
+                    </div>
+                  @else
+                    <p>Full</p>
+                  @endif
+                    <p class="join-rate">{{ $joinCount }}/{{ $project->max_number }}</p>
+                </div>
+                
+
+
+
               </section>
         
               </div>

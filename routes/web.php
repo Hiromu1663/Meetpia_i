@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\User\FavoriteController;
+use App\Http\Controllers\User\JoinController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\BusinessController;
@@ -148,13 +149,26 @@ Route::prefix('user_others')
     // Route::get('/show-project/{id}', 'showProject')->name('show-project');
 });
 
-
+// favorite機能
 Route::prefix('favorite')
 ->middleware('auth:users')
 ->controller(FavoriteController::class)
 ->group(function(){
-    Route::get('/toggle/{id}', 'toggle')->name('toggle');
+    Route::get('/toggle/{id}', 'toggle');
 });
+
+
+
+Route::prefix('join')
+->middleware('auth:users')
+// ->name('join.')
+->controller(JoinController::class)
+->group(function(){
+    Route::get('/toggle/{id}', 'toggle');
+});
+
+
+
 
 
 
