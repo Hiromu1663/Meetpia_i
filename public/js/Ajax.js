@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  // ページ遷移をせずにブックマークつけ外し
+  // ページ遷移をせずにfavoriteつけ外し
   $('.favorite a').click(function(event) {
     event.preventDefault(); 
 
@@ -26,6 +26,44 @@ $(document).ready(function() {
           // targetFavorite.find('a').text('お気に入りを外す');
           targetFavorite.find('a').html('<i class="fas fa-heart"></i>');
         }     
+      },
+      error: function(xhr, status, error) {
+        console.error(xhr.responseText);
+      }
+    });
+  });
+
+
+  // ページ遷移をせずにJoin
+  $('.join a').click(function(event) {
+    event.preventDefault(); 
+
+    let joinLink = $(this); 
+    let joinUrl = joinLink.attr('href'); 
+    let csrfToken = $('meta[name="csrf-token"]').attr('content');
+    let targetJoin = joinLink.closest('.join');
+
+    $.ajax({
+      url: joinUrl, 
+      type: 'GET',
+      data: {_token: csrfToken}, // CSRFトークンの送信
+      
+      success: function(response) {
+      console.log(response);
+      let isJoined = targetJoin.find('a').text().includes('Leave');
+      let joinRate = $('.join-rate');
+      let currentCount = parseInt(joinRate.text().split('/')[0]);
+      let maxNumber = parseInt(joinRate.text().split('/')[1]);
+
+      if (isJoined) {
+        targetJoin.find('a').text('Join');
+        let updatedCount = currentCount - 1;
+        joinRate.text(updatedCount + '/' + maxNumber);
+      } else {
+        targetJoin.find('a').text('Leave');
+        let updatedCount = currentCount + 1;
+        joinRate.text(updatedCount + '/' + maxNumber);
+      }
       },
       error: function(xhr, status, error) {
         console.error(xhr.responseText);

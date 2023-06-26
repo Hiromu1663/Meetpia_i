@@ -48,6 +48,11 @@ class Project extends Model
     {
         return Favorite::where("user_id", $user->id)->where("project_id", $this->id);
     }
+
+    public function joinedBy($user)
+    {
+        return Join::where("user_id", $user->id)->where("project_id", $this->id);
+    }
   
     public function scopeSearch($query, $search)
     {
