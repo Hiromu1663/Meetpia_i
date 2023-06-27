@@ -67,6 +67,10 @@ Route::prefix('user')
     // Avatarのみ編集
     Route::get('/editAvatar/{id}', 'editAvatar')->name('editAvatar');
     Route::put('/updateAvatar/{id}', 'updateAvatar')->name('updateAvatar');
+    // Contactの入力,確認,送信
+    Route::get('/contact/form', 'contactForm')->name('contact_form');
+    Route::post('/contact/confirm', 'contactConfirm')->name('contact_confirm');
+    Route::post('/contact/thanks', 'contactSend')->name('contact_send');
 });
 
 Route::prefix('user_business')
