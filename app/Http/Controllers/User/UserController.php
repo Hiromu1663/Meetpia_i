@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\User;
+use App\Models\Join;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\Rule;
@@ -213,14 +214,15 @@ class UserController extends Controller
     public function showProject($id)
     {
         $project = Project::find($id);
+        $joinCount = Join::where('project_id', $project->id)->count();
         
-        return view('user.show_project', compact('project'));
+        return view('user.show_project', compact('project', 'joinCount'));
+
     }
   
     public function editProject($id)
     {
         $project = Project::find($id);
-       
         return view("user.edit-project", compact('project'));
     }
 

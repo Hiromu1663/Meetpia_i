@@ -27,6 +27,7 @@ class CreateProjectsTable extends Migration
             $table->softDeletes();
             // $table->decimal('longitude', 10, 8);//緯度を格納するカラム
             // $table->decimal('latitude', 10, 8);//経度を格納するカラム
+            $table->integer('max_number');
             $table->timestamps();
         });
     }

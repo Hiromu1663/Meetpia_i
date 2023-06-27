@@ -25,6 +25,7 @@ class ProjectSeeder extends Seeder
                 'start_time' => '2023/01/01 11:11:11',
                 'end_time' => '2023/01/02 11:11:11',
                 'location' => 'cebu',
+                'max_number' => 1,
                 'created_at' => '2023/01/01 11:11:11'
             ],
             [
@@ -36,6 +37,7 @@ class ProjectSeeder extends Seeder
                 'start_time' => '2023/01/02 11:11:11',
                 'end_time' => '2023/01/03 11:11:11',
                 'location' => 'cebu',
+                'max_number' => 10,
                 'created_at' => '2023/01/01 11:11:11'
             ],
             [
@@ -47,6 +49,7 @@ class ProjectSeeder extends Seeder
                 'start_time' => '2023/01/03 11:11:11',
                 'end_time' => '2023/01/04 11:11:11',
                 'location' => 'cebu',
+                'max_number' => 20,
                 'created_at' => '2023/01/01 11:11:11'
             ],
             [
@@ -58,6 +61,7 @@ class ProjectSeeder extends Seeder
                 'start_time' => '2023/01/04 11:11:11',
                 'end_time' => '2023/01/05 11:11:11',
                 'location' => 'cebu',
+                'max_number' => 3,
                 'created_at' => '2023/01/01 11:11:11'
             ],
             // hobby
@@ -70,6 +74,7 @@ class ProjectSeeder extends Seeder
                 'start_time' => '2023/01/01 11:11:11',
                 'end_time' => '2023/01/02 11:11:11',
                 'location' => 'cebu',
+                'max_number' => 10,
                 'created_at' => '2023/01/01 11:11:11'
             ],
             [
@@ -81,6 +86,7 @@ class ProjectSeeder extends Seeder
                 'start_time' => '2023/01/02 11:11:11',
                 'end_time' => '2023/01/03 11:11:11',
                 'location' => 'cebu',
+                'max_number' => 10,
                 'created_at' => '2023/01/01 11:11:11'
             ],
             [
@@ -92,6 +98,7 @@ class ProjectSeeder extends Seeder
                 'start_time' => '2023/01/03 11:11:11',
                 'end_time' => '2023/01/04 11:11:11',
                 'location' => 'cebu',
+                'max_number' => 10,
                 'created_at' => '2023/01/01 11:11:11'
             ],
             [
@@ -103,6 +110,7 @@ class ProjectSeeder extends Seeder
                 'start_time' => '2023/01/04 11:11:11',
                 'end_time' => '2023/01/05 11:11:11',
                 'location' => 'cebu',
+                'max_number' => 10,
                 'created_at' => '2023/01/01 11:11:11'
             ],
             // study
@@ -115,6 +123,7 @@ class ProjectSeeder extends Seeder
                 'start_time' => '2023/01/01 11:11:11',
                 'end_time' => '2023/01/02 11:11:11',
                 'location' => 'cebu',
+                'max_number' => 10,
                 'created_at' => '2023/01/01 11:11:11'
             ],
             [
@@ -126,6 +135,7 @@ class ProjectSeeder extends Seeder
                 'start_time' => '2023/01/02 11:11:11',
                 'end_time' => '2023/01/03 11:11:11',
                 'location' => 'cebu',
+                'max_number' => 10,
                 'created_at' => '2023/01/01 11:11:11'
             ],
             [
@@ -137,6 +147,7 @@ class ProjectSeeder extends Seeder
                 'start_time' => '2023/01/03 11:11:11',
                 'end_time' => '2023/01/04 11:11:11',
                 'location' => 'cebu',
+                'max_number' => 10,
                 'created_at' => '2023/01/01 11:11:11'
             ],
             [
@@ -148,6 +159,7 @@ class ProjectSeeder extends Seeder
                 'start_time' => '2023/01/04 11:11:11',
                 'end_time' => '2023/01/05 11:11:11',
                 'location' => 'cebu',
+                'max_number' => 10,
                 'created_at' => '2023/01/01 11:11:11'
             ],
             // trade
@@ -160,6 +172,7 @@ class ProjectSeeder extends Seeder
                 'start_time' => '2023/01/01 11:11:11',
                 'end_time' => '2023/01/02 11:11:11',
                 'location' => 'cebu',
+                'max_number' =>10,
                 'created_at' => '2023/01/01 11:11:11'
             ],
             [
@@ -171,6 +184,7 @@ class ProjectSeeder extends Seeder
                 'start_time' => '2023/01/02 11:11:11',
                 'end_time' => '2023/01/03 11:11:11',
                 'location' => 'cebu',
+                'max_number' => 10,
                 'created_at' => '2023/01/01 11:11:11'
             ],
             [
@@ -182,6 +196,7 @@ class ProjectSeeder extends Seeder
                 'start_time' => '2023/01/03 11:11:11',
                 'end_time' => '2023/01/04 11:11:11',
                 'location' => 'cebu',
+                'max_number' => 10,
                 'created_at' => '2023/01/01 11:11:11'
             ],
             [
@@ -193,6 +208,7 @@ class ProjectSeeder extends Seeder
                 'start_time' => '2023/01/04 11:11:11',
                 'end_time' => '2023/01/05 11:11:11',
                 'location' => 'cebu',
+                'max_number' => 10,
                 'created_at' => '2023/01/01 11:11:11'
             ],
             // others
@@ -205,6 +221,7 @@ class ProjectSeeder extends Seeder
                 'start_time' => '2023/01/01 11:11:11',
                 'end_time' => '2023/01/02 11:11:11',
                 'location' => 'cebu',
+                'max_number' => 10,
                 'created_at' => '2023/01/01 11:11:11'
             ],
             [
@@ -216,6 +233,7 @@ class ProjectSeeder extends Seeder
                 'start_time' => '2023/01/02 11:11:11',
                 'end_time' => '2023/01/03 11:11:11',
                 'location' => 'cebu',
+                'max_number' => 10,
                 'created_at' => '2023/01/01 11:11:11'
             ],
             [
@@ -227,6 +245,7 @@ class ProjectSeeder extends Seeder
                 'start_time' => '2023/01/03 11:11:11',
                 'end_time' => '2023/01/04 11:11:11',
                 'location' => 'cebu',
+                'max_number' => 10,
                 'created_at' => '2023/01/01 11:11:11'
             ],
             [
@@ -238,6 +257,7 @@ class ProjectSeeder extends Seeder
                 'start_time' => '2023/01/04 11:11:11',
                 'end_time' => '2023/01/05 11:11:11',
                 'location' => 'cebu',
+                'max_number' => 10,
                 'created_at' => '2023/01/01 11:11:11'
             ],
         ]);
