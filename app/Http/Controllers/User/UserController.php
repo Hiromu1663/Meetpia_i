@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\User;
 use App\Models\Join;
+use App\Models\Contact;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\Rule;
@@ -301,7 +302,39 @@ class UserController extends Controller
             $user->avatar = $avatar;
             $user->save();
         }
-          
+        
         return redirect()->route("user.show", $user->id);
     }
+
+    public function contactForm(Request $request)
+    {
+        return view('user.contact.form');
+    }
+
+    public function contactConfirm(Request $request)
+    {
+        $validatedData = $request->validate([
+            "name" => ["required", "string"],
+            "email" => ["required", "string"],
+            "message" => ["required", "string"],
+        ]);
+    
+        return view('user.contact.confirm', [
+            'inputs' => $validatedData,
+        ]);
+    }
+
+    public function contactSend(Request $request)
+    {
+        $validatedData = $request->validate([
+            "name" => ["required", "string"],
+            "email" => ["required", "string"],
+            "message" => ["required", "string"],
+        ]);
+    
+        Contact::create($validatedData);
+    
+        return view('user.contact.send');
+    }
 }
+

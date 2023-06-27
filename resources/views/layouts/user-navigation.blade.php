@@ -103,7 +103,9 @@
                             </x-dropdown>
                         </div>
             
-                      <a class="font-medium text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500" href="#">English</a>
+                        <a class="font-medium text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500" href="#">English</a>
+
+                        <a class="font-medium text-gray-400 dark:hover:text-gray-500" href="{{ route('user.contact_form') }}" aria-current="page">Contact</a>
                     </div>
                   </div>
                   
