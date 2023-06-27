@@ -16,7 +16,25 @@ class BusinessController extends Controller
      */
     public function index(Request $request)
     {
+        
         $search = $request->search;
+        $checkboxes = $request->input('checkbox');
+
+        // チェックボックスの値を確認する
+        if (is_array($checkboxes)) {
+            foreach ($checkboxes as $checkbox) {
+                // 各チェックボックスの値を処理する
+                // ここでは例として表示するだけです
+                if ($checkbox !== null) {
+                    // 検索がある場合の処理
+                    $query = Project::search($checkbox);
+                    $check = $query->get();
+                } else {
+                    // 検索がない場合の処理
+                    $business = Project::where('genre', 'Business')->get();
+                } 
+            }
+        }
 
         if ($search !== null) {
             // 検索がある場合の処理
@@ -27,7 +45,7 @@ class BusinessController extends Controller
             $business = Project::where('genre', 'Business')->get();
         }
 
-        return view('user.business.index', compact('business'));
+        return view('user.business.index', compact('business', 'check'));
 
     }
 

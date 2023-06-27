@@ -21,6 +21,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        
         $search = $request->search;
 
         if ($search !== null) {
@@ -213,7 +214,7 @@ class UserController extends Controller
     {
         $project = Project::find($id);
         
-        return view('user.show-project', compact('project'));
+        return view('user.show_project', compact('project'));
     }
   
     public function editProject($id)
