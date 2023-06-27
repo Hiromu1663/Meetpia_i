@@ -38,8 +38,11 @@ Route::middleware('auth:admin')
 ->controller(AdminController::class)
 ->group(function(){
     Route::get('/', 'index')->name('index');
+    Route::get('/event', 'search')->name('event');
     Route::get('/show/{user}', 'show')->name('show');
+    Route::get('/show_project/{user}', 'showProject')->name('show_project');
     Route::delete('/destroy/{user}', 'destroy')->name('destroy');
+    Route::delete('/destroy_project/{id}', 'destroyProject')->name('destroy_project');
 
     // 削除されたユーザー
     // Route::get('delete-users','deletedUserIndex')->name('deleted-users.index');
@@ -59,6 +62,19 @@ Route::prefix('deleted-users')
     Route::get('/destroy/{user}', 'deletedUserDestroy')->name('destroy');
     Route::get('/restore/{user}', 'deletedUserRestore')->name('restore');
 });
+
+// 削除されたイベント
+Route::prefix('deleted_project')
+->middleware('auth:admin')
+->controller(AdminController::class)
+->name('deleted_project.')
+->group(function(){
+    Route::get('/','deletedProjectIndex')->name('index');
+    Route::get('/show/{user}', 'deletedProjectShow')->name('show');
+    Route::delete('/destroy/{id}', 'deletedProjectDestroy')->name('destroy');
+    Route::get('/restore/{id}', 'deletedProjectRestore')->name('restore');
+});
+
 
 
 

@@ -5,9 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+
 
 class Project extends Model
 {
+
+    use HasFactory, SoftDeletes;
+    
     protected $fillable = [
         'title',
         'contents',
@@ -19,10 +25,6 @@ class Project extends Model
         'location',
     ];
 
-
-
-
-    use HasFactory;
 
     public function user()
     {
