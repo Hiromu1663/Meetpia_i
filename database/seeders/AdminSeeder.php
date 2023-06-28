@@ -20,6 +20,6 @@ class AdminSeeder extends Seeder
                 'email' => 'admin@admin.com',
                 'password' => Hash::make('admin123'),
                 'created_at' => '2023/01/01 11:11:11',
-            ]);
+        ]);
     }
 }
