@@ -30,6 +30,8 @@ class User extends Authenticatable
         'address',
         'avatar',
         'status',
+        'scores',
+        'scored_count',
         'password',
     ];
 

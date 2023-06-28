@@ -20,6 +20,8 @@ class CreateJoinsTable extends Migration
             $table->unsignedBigInteger('project_id');
             $table->foreign('project_id')->references('id')->on('projects');
             $table->string('role')->nullable();
+            $table->integer('score')->nullable();
+            $table->string('review_comment')->nullable();
             $table->timestamps();
         });
     }

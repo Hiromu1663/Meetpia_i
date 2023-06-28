@@ -28,6 +28,8 @@ class CreateUsersTable extends Migration
             $table->string('avatar')->nullable();
             $table->string('status');
             $table->text('introduction')->nullable();
+            $table->integer('scores');
+            $table->integer('scored_count');
             $table->string('password');
             $table->softDeletes();
             $table->rememberToken();

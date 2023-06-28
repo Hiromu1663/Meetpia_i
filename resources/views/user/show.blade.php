@@ -13,7 +13,7 @@
           <a href="{{ route('user.edit', $user->id) }}" class="ml-5 mb-1"><h2>Edit Profile</h2></a>
           <div class="flex">
             <span class="flex items-center">
-              <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24">
+              {{-- <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
               </svg>
               <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24">
@@ -24,11 +24,15 @@
               </svg>
               <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-              </svg>
+              </svg> --}}
               <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
               </svg>
-              <span class="text-gray-600 ml-3">4</span>
+              @if($user->scored_count !== 0)
+              <span class="text-gray-600 ml-1">{{ round($user->scores / $user->scored_count, 1) }} / 5</span>
+              @else
+              <span class="text-gray-600 ml-1">0</span>
+              @endif
             </span>
             <span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s">
               <a class="text-gray-500">
@@ -80,16 +84,143 @@
           {{-- ------------------------------------------------------------------------- --}}
 
 
+  <select id="filter-select" class="ml-24 mt-10 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block">
+    <option value="all">Your events</option>
+    <option value="create">Created by you</option>
+    <option value="join">Joined events</option>
+    <option value="favorite">Favorite events</option>
+  </select>
+          
 
-  {{-- 自分の企画一覧 --}}
-  <div class="text-gray-600 body-font">
+  {{-- all企画 --}}
+
+  <div id="all" class="text-gray-600 body-font">
     @foreach($projects as $project)
     <div class="container mx-auto flex px-5 py-12 md:flex-row flex-col items-center">
       <div class="lg:max-w-lg lg:w-1/3 md:w-1/2 w-5/6 mb-10 md:mb-0">
         <a href="{{ route('user.show-project', $project->id) }}"><img class="object-cover object-center rounded" alt="project-image" src="{{ asset('storage/images/'.$project->image) }}"></a>
       </div>
       <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-        <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">{{ $project->title }}</h1>
+        <div class="flex justify-between w-full pr-10">
+          <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">{{ $project->title }}</h1>
+          {{-- 参加した企画の終了後から1週間のみreview表示 --}}
+          @if ($project->JoinedBy(Auth::user())->exists() && strtotime($project->end_time) < time() && strtotime($project->end_time) + (7 * 24 * 60 * 60) >= time() && $project->JoinedBy(Auth::user())->first()->score == null)
+          <div>
+            <a href="{{ route('user.create_review', ['id' => $project->JoinedBy(Auth::user())->first()->id]) }}" class="mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Review</a>
+          </div>
+          @endif
+        </div>
+        <p class="mb-8 leading-relaxed">{{ $project->contents }}</p>
+        <div>
+          <div class="">
+            <p>Location</p>
+            <p class="title-font font-medium text-2xl text-gray-900">{{ $project->location }}</p>
+          </div>
+          <div class="">
+            <p>Date</p>
+            <p class="title-font font-medium text-2xl text-gray-900">{{ $project->start_time }}〜{{ $project->end_time }}</p>     
+          </div>
+      
+          <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
+            <a href="{{ route('user.show-project', $project->id) }}"><p class="mr-3">More Infomation</p></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    @endforeach
+  </div>
+
+  {{-- create企画 --}}
+  <div id="create" class="text-gray-600 body-font hidden">
+    @foreach($create as $project)
+    <div class="container mx-auto flex px-5 py-12 md:flex-row flex-col items-center">
+      <div class="lg:max-w-lg lg:w-1/3 md:w-1/2 w-5/6 mb-10 md:mb-0">
+        <a href="{{ route('user.show-project', $project->id) }}"><img class="object-cover object-center rounded" alt="project-image" src="{{ asset('storage/images/'.$project->image) }}"></a>
+      </div>
+      <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
+        <div class="flex justify-between w-full pr-10">
+          <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">{{ $project->title }}</h1>
+          {{-- 参加した企画の終了後から1週間のみreview表示 --}}
+          @if ($project->JoinedBy(Auth::user())->exists() && strtotime($project->end_time) < time() && strtotime($project->end_time) + (7 * 24 * 60 * 60) >= time() && $project->JoinedBy(Auth::user())->first()->score == null)
+          <div>
+            <a href="" class="mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Review</a>
+          </div>
+          @endif
+        </div>
+        <p class="mb-8 leading-relaxed">{{ $project->contents }}</p>
+        <div>
+          <div class="">
+            <p>Location</p>
+            <p class="title-font font-medium text-2xl text-gray-900">{{ $project->location }}</p>
+          </div>
+          <div class="">
+            <p>Date</p>
+            <p class="title-font font-medium text-2xl text-gray-900">{{ $project->start_time }}〜{{ $project->end_time }}</p>     
+          </div>
+      
+          <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
+            <a href="{{ route('user.show-project', $project->id) }}"><p class="mr-3">More Infomation</p></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    @endforeach
+  </div>
+
+  {{-- join企画 --}}
+  <div id="join" class="text-gray-600 body-font hidden">
+    @foreach($join as $project)
+    <div class="container mx-auto flex px-5 py-12 md:flex-row flex-col items-center">
+      <div class="lg:max-w-lg lg:w-1/3 md:w-1/2 w-5/6 mb-10 md:mb-0">
+        <a href="{{ route('user.show-project', $project->id) }}"><img class="object-cover object-center rounded" alt="project-image" src="{{ asset('storage/images/'.$project->image) }}"></a>
+      </div>
+      <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
+        <div class="flex justify-between w-full pr-10">
+          <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">{{ $project->title }}</h1>
+          {{-- 参加した企画の終了後から1週間のみreview表示 --}}
+          @if ($project->JoinedBy(Auth::user())->exists() && strtotime($project->end_time) < time() && strtotime($project->end_time) + (7 * 24 * 60 * 60) >= time() && $project->JoinedBy(Auth::user())->first()->score == null)
+          <div>
+            <a href="" class="mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Review</a>
+          </div>
+          @endif
+        </div>
+        <p class="mb-8 leading-relaxed">{{ $project->contents }}</p>
+        <div>
+          <div class="">
+            <p>Location</p>
+            <p class="title-font font-medium text-2xl text-gray-900">{{ $project->location }}</p>
+          </div>
+          <div class="">
+            <p>Date</p>
+            <p class="title-font font-medium text-2xl text-gray-900">{{ $project->start_time }}〜{{ $project->end_time }}</p>     
+          </div>
+      
+          <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
+            <a href="{{ route('user.show-project', $project->id) }}"><p class="mr-3">More Infomation</p></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    @endforeach
+  </div>
+
+  {{-- favorite企画 --}}
+  <div id="favorite" class="text-gray-600 body-font hidden">
+    @foreach($favorite as $project)
+    <div class="container mx-auto flex px-5 py-12 md:flex-row flex-col items-center">
+      <div class="lg:max-w-lg lg:w-1/3 md:w-1/2 w-5/6 mb-10 md:mb-0">
+        <a href="{{ route('user.show-project', $project->id) }}"><img class="object-cover object-center rounded" alt="project-image" src="{{ asset('storage/images/'.$project->image) }}"></a>
+      </div>
+      <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
+        <div class="flex justify-between w-full pr-10">
+          <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">{{ $project->title }}</h1>
+          {{-- 参加した企画の終了後から1週間のみreview表示 --}}
+          @if ($project->JoinedBy(Auth::user())->exists() && strtotime($project->end_time) < time() && strtotime($project->end_time) + (7 * 24 * 60 * 60) >= time() && $project->JoinedBy(Auth::user())->first()->score == null)
+          <div>
+            <a href="" class="mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Review</a>
+          </div>
+          @endif
+        </div>
         <p class="mb-8 leading-relaxed">{{ $project->contents }}</p>
         <div>
           <div class="">

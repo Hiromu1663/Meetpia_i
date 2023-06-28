@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\User;
 use App\Models\Join;
+use App\Models\Favorite;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\Rule;
@@ -77,6 +78,7 @@ class UserController extends Controller
             'start_time' => ['required'],
             'end_time' => ['required', 'after:start_time'],
             'location' => ['nullable', 'string'],
+            'max_number' => ['required', 'integer'],
         ]);
 
         $project = new Project();
@@ -88,6 +90,8 @@ class UserController extends Controller
         $project->start_time = $request->start_time;
         $project->end_time = $request->end_time; 
         $project->location = $request->location;
+        $project->max_number = $request->max_number;
+        $project->hot = 0;
         $project->save();
 
         return redirect()->route("user.index");
@@ -112,9 +116,18 @@ class UserController extends Controller
         if ($currentMonth < $birth_month || ($currentMonth == $birth_month && $currentDay < $birth_day)) {
         $age--; // 誕生日が来ていない場合は年齢を1つ引く
         }
-        $projects = Project::where('user_id', $id)->get();
-       
-        return view('user.show', compact('user', 'projects', 'age'));
+        
+        $createIds = Project::where('user_id', $id)->pluck('id')->toArray();
+        $joinIds = Join::where('user_id', $id)->pluck('project_id')->toArray();
+        $favoriteIds = Favorite::where('user_id', $id)->pluck('project_id')->toArray();
+        $allIds = array_merge($createIds, $joinIds, $favoriteIds);
+        $allIds = array_unique($allIds);
+        $projects = Project::whereIn('id', $allIds)->orderBy('start_time', 'asc')->get();
+        $create = Project::whereIn('id', $createIds)->orderBy('start_time', 'asc')->get();
+        $join = Project::whereIn('id', $joinIds)->orderBy('start_time', 'asc')->get();
+        $favorite = Project::whereIn('id', $favoriteIds)->orderBy('start_time', 'asc')->get();
+
+        return view('user.show', compact('user', 'age', 'projects', 'create', 'join', 'favorite'));
     }
 
     /**
@@ -301,5 +314,34 @@ class UserController extends Controller
         }
           
         return redirect()->route("user.show", $user->id);
+    }
+
+    // Review
+    public function createReview($id)
+    {
+        $join = Join::find($id);
+       
+        return view('user.review', compact('join'));
+    }
+    
+    public function storeReview(Request $request, $id)
+    {
+        $request->validate([
+            "score" => ["required", "integer", 'in:1,2,3,4,5'],
+            "review_comment" => ["nullable", "string"],
+        ]);
+
+        $join = Join::find($id);
+        $join->score = $request->score;
+        $join->review_comment = $request->review_comment;
+        $join->save();
+        $user = User::find($join->project->user_id);
+        $current_scores = $user->scores;
+        $user->scores = $current_scores + $join->score;
+        $current_scored_count = $user->scored_count;
+        $user->scored_count = $current_scored_count + 1;
+        $user->save();
+
+        return redirect()->route("user.show", auth()->user()->id);
     }
 }

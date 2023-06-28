@@ -70,4 +70,51 @@ $(document).ready(function() {
       }
     });
   });
+
+
+
+
+  $(document).ready(function() {
+    $('#filter-select').change(function() {
+      let selectedFilter = $(this).val();
+  
+      // 選択値に基づいて表示を切り替える
+      if (selectedFilter === 'create') {
+        $('#all').hide();
+        $('#create').show();
+        $('#join').hide();
+        $('#favorite').hide();
+      } else if (selectedFilter === 'join') {
+        $('#all').hide();
+        $('#create').hide();
+        $('#join').show();
+        $('#favorite').hide();
+      } else if (selectedFilter === 'favorite') {
+        $('#all').hide();
+        $('#create').hide();
+        $('#join').hide();
+        $('#favorite').show();
+      } else if (selectedFilter === 'all') {
+        // 全ての項目を表示する場合の処理
+        $('#all').show();
+        $('#create').hide();
+        $('#join').hide();
+        $('#favorite').hide();
+      }
+    });
+  });
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
 });

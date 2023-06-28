@@ -67,6 +67,9 @@ Route::prefix('user')
     // Avatarのみ編集
     Route::get('/editAvatar/{id}', 'editAvatar')->name('editAvatar');
     Route::put('/updateAvatar/{id}', 'updateAvatar')->name('updateAvatar');
+    // Review
+    Route::get('/review/{id}', 'createReview')->name('create_review');
+    Route::post('/store_review/{id}', 'storeReview')->name('store_review');
 });
 
 Route::prefix('user_business')
