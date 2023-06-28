@@ -1,4 +1,5 @@
 <x-app-layout>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <section class="text-gray-600 body-font overflow-hidden ">
         <div class="container px-5 mx-auto mt-8">
           <div class="lg:w-full mx-auto flex flex-wrap">

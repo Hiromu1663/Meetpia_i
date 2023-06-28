@@ -1,4 +1,5 @@
 <x-app-layout>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <body>
   {{-- プロフィールカード --}}
   <div class="text-gray-600 body-font overflow-hidden">
