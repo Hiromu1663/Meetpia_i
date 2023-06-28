@@ -35,45 +35,47 @@
                                 </svg>
                               </div>
                               <button class="py-3 px-4 inline-flex flex-shrink-0 justify-center items-center rounded-r-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-sm">Search</button>
-                            </form>
                             </div>
-                        </div>
-                        </div>
-                        <div class="container px-5 py-5 mx-auto flex items-center justify-center">
-                          <ul class="flex space-x-3 text-sm">
-                            <li class="flex space-x-3">
-                              <input type="checkbox" class="h-6 w-6 text-blue-500 rounded-2xl" id="checkbox1">
-                              <span class="text-gray-800 dark:text-gray-400">
-                                Select
-                              </span>
-                            </li>
-                            <li class="flex space-x-3">
-                              <input type="checkbox" class="h-6 w-6 rounded-2xl text-blue-500" id="checkbox2">
-                              <span class="text-gray-800 dark:text-gray-400">
-                                Select
-                              </span>
-                            </li>
-                            <li class="flex space-x-3">
-                              <input type="checkbox" class="h-6 w-6 rounded-2xl text-blue-500" id="checkbox3">
-                              <span class="text-gray-800 dark:text-gray-400">
-                                Select
-                              </span>
-                            </li>
-                            <li class="flex space-x-3">
-                              <input type="checkbox" class="h-6 w-6 rounded-2xl text-blue-500" id="checkbox4">
-                              <span class="text-gray-800 dark:text-gray-400">
-                                Select
-                              </span>
-                            </li>
-                            <li class="flex space-x-3">
-                              <input type="checkbox" class="h-6 w-6 rounded-2xl text-blue-500" id="checkbox5">
-                              <span class="text-gray-800 dark:text-gray-400">
-                                Select
-                              </span>
-                            </li>
-                          </ul>
-                        </div>
-                      <div class="container px-5 py-5 mx-auto flex items-center justify-center">
+                            </form>
+                          </div>
+                      </div>
+
+                      {{-- <div class="container px-5 py-5 mx-auto flex items-center justify-center">
+                        <ul class="flex space-x-3 text-sm">
+                          <li class="flex space-x-3">
+                            <input type="checkbox" class="h-6 w-6 text-blue-500 rounded-2xl" id="checkbox1">
+                            <span class="text-gray-800 dark:text-gray-400">
+                              Select
+                            </span>
+                          </li>
+                          <li class="flex space-x-3">
+                            <input type="checkbox" class="h-6 w-6 rounded-2xl text-blue-500" id="checkbox2">
+                            <span class="text-gray-800 dark:text-gray-400">
+                              Select
+                            </span>
+                          </li>
+                          <li class="flex space-x-3">
+                            <input type="checkbox" class="h-6 w-6 rounded-2xl text-blue-500" id="checkbox3">
+                            <span class="text-gray-800 dark:text-gray-400">
+                              Select
+                            </span>
+                          </li>
+                          <li class="flex space-x-3">
+                            <input type="checkbox" class="h-6 w-6 rounded-2xl text-blue-500" id="checkbox4">
+                            <span class="text-gray-800 dark:text-gray-400">
+                              Select
+                            </span>
+                          </li>
+                          <li class="flex space-x-3">
+                            <input type="checkbox" class="h-6 w-6 rounded-2xl text-blue-500" id="checkbox5">
+                            <span class="text-gray-800 dark:text-gray-400">
+                              Select
+                            </span>
+                          </li>
+                        </ul>
+                      </div> --}}
+
+                      {{-- <div class="container px-5 py-5 mx-auto flex items-center justify-center">
                           <ul class="flex space-x-3 text-sm">
                             <li class="flex space-x-3">
                               <input type="checkbox" class="h-6 w-6 rounded-2xl text-blue-500" id="checkbox1">
@@ -106,7 +108,7 @@
                               </span>
                             </li>
                           </ul>
-                      </div>
+                      </div> --}}
                         
                       <div class="container px-5 py-10 mx-auto flex flex-wrap">
                           <div class="flex flex-wrap -m-4">
@@ -120,8 +122,8 @@
                                 <p class="leading-relaxed text-base">Location : {{ $project->location }}</p>
                                 <p class="leading-relaxed text-base">Start : {{ $project->start_time }}</p>
                                 <p class="leading-relaxed text-base">End : {{ $project->end_time }}</p>
-                                <i class="fa fa-heart mt-3" aria-hidden="true">600</i>
-                                <i class="fa fa-commenting ml-2" aria-hidden="true">120</i>
+                                <i class="fa fa-heart mt-3" aria-hidden="true">{{ $project->favorites->count() }}</i>
+                                <i class="fa fa-commenting ml-2" aria-hidden="true">{{ $project->joins->count() }}/{{ $project->max_number }}</i>
                                 <i class="fa fa-user-circle-o ml-2" aria-hidden="true">{{ $project->user->name }}</i>
                               </div>
                             </div>
