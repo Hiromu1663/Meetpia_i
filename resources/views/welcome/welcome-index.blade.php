@@ -138,16 +138,16 @@
       <section class="text-gray-600 body-font">
         <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
           <div class="text-center lg:w-2/3 w-full">
-            <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Description of This App</h1>
-            <p class="mb-8 leading-relaxed">Meetpia is app as purpose on international interaction to exchange language and create business event between Japanese and non-natives.
+            <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">What is "Meetpia"</h1>
+            <p class="mb-8 leading-relaxed text-xl">Meetpia is app as purpose on international interaction to exchange language and create business event between Japanese and non-natives.
               Our purpose of invention on Meetpia is to open various events, promote Cebu’s life and career through this app. </p>
-                <button class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg"><a href="{{ url('/login') }}">Login</a></button>
-                <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"><a href="{{ url('/register') }}">Register</a></button>
+                <button class="ml-5 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg"><a href="{{ url('/login') }}">Login</a></button>
+                <button class="ml-5 inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"><a href="{{ url('/register') }}">Register</a></button>
           </div>
         </div>
       </section>
     </body>
-    <footer class="text-gray-600 body-font bg-black">
+    <footer class="text-gray-600 body-font bg-indigo-500">
       <div class="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
         <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
           <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
@@ -156,52 +156,52 @@
             </svg>
             <span class="ml-3 text-xl text-white">Meetpia</span>
           </a>
-          <p class="mt-2 text-sm text-gray-500">Air plant banjo lyft occupy retro adaptogen indego</p>
+          <p class="mt-2 text-sm text-white">Socialize your life</p>
         </div>
         <div class="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
           <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-            <h2 class="title-font font-medium text-white-900 tracking-widest text-sm mb-3">Create</h2>
+            <h2 class="title-font font-medium  text-white tracking-widest text-sm mb-3">Create</h2>
           </div>
           <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-            <h2 class="title-font font-medium text-white-900 tracking-widest text-sm mb-3 colour">CATEGORIES</h2>
+            <h2 class="title-font font-medium  text-white tracking-widest text-sm mb-3">Categories</h2>
             <nav class="list-none mb-10">
               <li>
-                <a class="text-gray-600 hover:text-gray-800">Business</a>
+                <a class=" text-white hover:text-gray-800">Business</a>
               </li>
               <li>
-                <a class="text-gray-600 hover:text-gray-800">Hobby</a>
+                <a class="text-white hover:text-gray-800">Hobby</a>
               </li>
               <li>
-                <a class="text-gray-600 hover:text-gray-800">Study</a>
+                <a class=" text-white hover:text-gray-800">Study</a>
               </li>
               <li>
-                <a class="text-gray-600 hover:text-gray-800">Trade</a>
+                <a class=" text-white hover:text-gray-800">Trade</a>
               </li>
               <li>
-                <a class="text-gray-600 hover:text-gray-800">Other</a>
+                <a class=" text-white hover:text-gray-800">Other</a>
               </li>
             </nav>
           </div>
           <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-            <h2 class="title-font font-medium text-white--900 tracking-widest text-sm mb-3">Language</h2>
+            <h2 class="title-font font-medium  text-white tracking-widest text-sm mb-3">Language</h2>
             <nav class="list-none mb-10">
               <li>
-                <a class="text-gray-600 hover:text-gray-800">English</a>
+                <a class=" text-white hover:text-gray-800">English</a>
               </li>
               <li>
-                <a class="text-gray-600 hover:text-gray-800">Japanese</a>
+                <a class=" text-white hover:text-gray-800">日本語</a>
               </li>
             </nav>
           </div>
           <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-            <h2 class="title-font font-medium text-white-900 tracking-widest text-sm mb-3">Privacy Policy</h2>
+            <h2 class="title-font font-medium  text-white tracking-widest text-sm mb-3">Privacy Policy</h2>
           </div>
         </div>
       </div>
       <div class="bg-gray-100">
         <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
-          <p class="text-gray-500 text-sm text-center sm:text-left">© 2020 Tailblocks —
-            <a href="https://twitter.com/knyttneve" rel="noopener noreferrer" class="text-gray-600 ml-1" target="_blank">@meetpia</a>
+          <p class="text-gray-500 text-sm text-center sm:text-left">&copy; 2023 Meetpia
+            {{-- <a href="https://twitter.com/knyttneve" rel="noopener noreferrer" class="text-gray-600 ml-1" target="_blank">@meetpia</a> --}}
           </p>
           <span class="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
             <a class="text-gray-500">
