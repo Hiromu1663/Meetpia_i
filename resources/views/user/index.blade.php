@@ -41,7 +41,7 @@
                                         <div class="flex flex-wrap -m-4 justify-center">
                                             <div class="bg-gray-100 p-6 rounded-lg">
                                                 <div class="w-full">
-                                                    <a href="{{ route('user.show', ['id' => $project->id]) }}">
+                                                    <a href="{{ route('user.show-project', ['id' => $project->id]) }}">
                                                         <div class="h-full flex flex-col items-center text-center">
                                                             <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4" src="{{ asset('storage/images/'.$project->image) }}" style="height: 150px; width: 200px;">
                                                             <div class="h-full">

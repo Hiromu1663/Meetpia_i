@@ -70,6 +70,10 @@ Route::prefix('user')
     // Review
     Route::get('/review/{id}', 'createReview')->name('create_review');
     Route::post('/store_review/{id}', 'storeReview')->name('store_review');
+    // Contactの入力,確認,送信
+    Route::get('/contact/form', 'contactForm')->name('contact_form');
+    Route::post('/contact/confirm', 'contactConfirm')->name('contact_confirm');
+    Route::post('/contact/thanks', 'contactSend')->name('contact_send');
 });
 
 Route::prefix('user_business')

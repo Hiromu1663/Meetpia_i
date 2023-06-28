@@ -44,7 +44,6 @@
                 </span>
 
                 <span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s">
-                @if($project->id !== Auth::user()->id)
                   <div class="favorite">
                     @if($project->favoritedBy(Auth::user())->exists())
                     <a href="/favorite/toggle/{{ $project->id }}"><i class="fas fa-heart-broken"></i></a>
@@ -52,16 +51,14 @@
                     <a href="/favorite/toggle/{{ $project->id }}"><i class="fas fa-heart"></i></a> 
                     @endif
                   </div>
-                @endif
 
-                  @if($project->user_id == Auth::user()->id)
+                  
                   <a href="{{ route('user.edit-project', $project->id) }}" class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 ml-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Edit</a>
-                  <form action="{{ route('user.destroy-project', ['id' => $project->id]) }}" method="POST">
+                  <form action="{{ route('admin.destroy_project', ['id' => $project->id]) }}" method="POST" id="delete_{{$project->id}}">
                     @csrf
                     @method('delete')
-                    <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 ml-2 focus:outline-none hover:bg-indigo-600 rounded text-lg">Delete</button>
+                    <button type="button" class="inline-flex text-white bg-red-500 border-0 py-2 px-6 ml-2 focus:outline-none hover:bg-red-600 rounded text-lg" data-id="{{$project->id}}" onclick="deletePost(this)">Delete</button>
                   </form>
-                  @endif
                 </span>
                   
                 
@@ -135,8 +132,6 @@
             </div>
           </div>
           <div class="p-4 lg:w-1/2 md:w-full">
-            <form method="POST" action="{{ route('user.contact_confirm') }}">
-              @csrf
             <div class="rounded-lg border-gray-200 border-opacity-50  sm:flex-row flex-col">
               <section class="text-gray-600 body-font relative w-full">
                 <div class="container p-8 mx-auto">
@@ -148,59 +143,42 @@
                       <div class="p-2 w-1/2">
                         <div class="relative">
                           <label for="name" class="leading-7 text-sm text-gray-600">Name</label>
-                          <input value="{{ old('name') }}" type="text" id="name" name="name" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                          @if ($errors->has('name'))
-                          <p class="error-message">{{ $errors->first('name') }}</p>
-                      @endif
+                          <input type="text" id="name" name="name" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                         </div>
                       </div>
                       <div class="p-2 w-1/2">
                         <div class="relative">
                           <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
-                          <input value="{{ old('email') }}" type="email" id="email" name="email" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                          @if ($errors->has('email'))
-                          <p class="error-message">{{ $errors->first('email') }}</p>
-                      @endif
+                          <input type="email" id="email" name="email" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                         </div>
                       </div>
                       <div class="p-2 w-full">
                         <div class="relative">
                           <label for="message" class="leading-7 text-sm text-gray-600">Message</label>
-                          <textarea id="message" name="message" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out">{{ old('message') }}</textarea>
+                          <textarea id="message" name="message" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
                         </div>
                       </div>
                       <div class="flex flex-row items-center justify-center p-2 w-full">
                         {{-- <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Jion</button> --}}
                         <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Contact</button>
-                        @if ($errors->has('message'))
-                        <p class="error-message">{{ $errors->first('message') }}</p>
-                    @endif
                       </div>
                   </div>
                 </div>
-                <div class="flex">
-                @if($project->id !== Auth::user()->id)
-                  <div>
-                  @if($joinCount < $project->max_number || $project->JoinedBy(Auth::user())->exists())
-                    <div class="join">
-                    @if($project->JoinedBy(Auth::user())->exists())
-                      <a href="/join/toggle/{{ $project->id }}" class="mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Leave</a>
-                    @else
-                      <a href="/join/toggle/{{ $project->id }}" class="mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Join</a> 
-                    @endif
-                    </div>
-                  @else
-                    <p>Full</p>
-                  @endif
-                  </div>
-                @endif
-                  <p class="join-rate">{{ $joinCount }}/{{ $project->max_number }}</p>
-                </div>
               </section>
+        
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-  </x-app-layout>
+<script>
+  function deletePost(e) {
+    'use strict';
+    if (confirm('本当に削除しても良いですか？')) {
+      document.getElementById('delete_' + e.dataset.id).submit();
+    }
+  }
+</script>
+    
+</x-app-layout>
