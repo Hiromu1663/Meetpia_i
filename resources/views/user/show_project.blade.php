@@ -164,7 +164,7 @@
           </div>
 
           <div class="p-4 lg:w-1/2 md:w-full">
-            <form method="POST" action="{{ route('user.contact_confirm') }}">
+            <form method="POST" action="{{ route('user.contact_confirm', ['project_id' => $project->id]) }}">
               @csrf
             <div class="rounded-lg border-gray-200 border-opacity-50  sm:flex-row flex-col">
               <section class="text-gray-600 body-font relative w-full">
@@ -177,7 +177,7 @@
                       <div class="p-2 w-1/2">
                         <div class="relative">
                           <label for="name" class="leading-7 text-sm text-gray-600">Name</label>
-                          <input value="{{ old('name') }}" type="text" id="name" name="name" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                          <input value="{{ Auth::user()->name }}" type="text" id="name" name="name" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                           @if ($errors->has('name'))
                           <p class="error-message">{{ $errors->first('name') }}</p>
                       @endif
@@ -186,7 +186,7 @@
                       <div class="p-2 w-1/2">
                         <div class="relative">
                           <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
-                          <input value="{{ old('email') }}" type="email" id="email" name="email" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                          <input value="{{ Auth::user()->email }}" type="email" id="email" name="email" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                           @if ($errors->has('email'))
                           <p class="error-message">{{ $errors->first('email') }}</p>
                       @endif

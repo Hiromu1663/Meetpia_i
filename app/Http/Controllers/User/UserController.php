@@ -265,7 +265,7 @@ class UserController extends Controller
             $project->location = $request->location;
             $project->save();
        
-            return redirect()->route("user.show-project", $project->id);
+            return redirect()->route("user.show_project", $project->id);
     }
 
     public function destroyProject($id)
@@ -349,36 +349,60 @@ class UserController extends Controller
       
     }
       
+    // Contact機能
     public function contactForm(Request $request)
     {
         return view('user.contact.form');
     }
 
-    public function contactConfirm(Request $request)
+    public function contactConfirm(Request $request, $project_id)
     {
         $validatedData = $request->validate([
             "name" => ["required", "string"],
             "email" => ["required", "string"],
             "message" => ["required", "string"],
         ]);
+
+        $user = Auth::user();
+        
     
         return view('user.contact.confirm', [
             'inputs' => $validatedData,
+            'user' => $user,
+            'project_id' => $project_id
         ]);
     }
 
-    public function contactSend(Request $request)
+    public function contactSend(Request $request, $project_id)
     {
         $validatedData = $request->validate([
             "name" => ["required", "string"],
             "email" => ["required", "string"],
             "message" => ["required", "string"],
         ]);
-    
-        Contact::create($validatedData);
-    
-        return view('user.contact.send');
 
+        $user = Auth::user();
+        $project = Project::find($project_id);
+    
+        Contact::create([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'message' => $validatedData['message'],
+            'project_id' => $project->id,
+            'user_id' => $user->id,
+        ]);
+
+        return view('user.contact.send', ['project' => $project_id]);
+    }
+
+    public function contactIndex()
+    {
+
+    $user_id = auth()->id();
+    $project_ids = User::findOrFail($user_id)->projects->pluck('id');
+    $contacts = Contact::whereIn('project_id', $project_ids)->get();
+
+    return view('user.contact.index', ['contacts' => $contacts]);
     }
 }
 
