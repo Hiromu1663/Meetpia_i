@@ -11,6 +11,8 @@ class Join extends Model
         'user_id',
         'project_id',
         'role',
+        'score',
+        'review_comment',
     ];
 
     use HasFactory;

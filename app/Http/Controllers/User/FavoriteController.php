@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Models\Favorite;
+use App\Models\Project;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -108,12 +109,22 @@ class FavoriteController extends Controller
         if ($existingFavorite) {
             // ブックマークが存在する場合は削除
             $existingFavorite->delete();
+            // ワイワイ度
+            $project = Project::find($id);
+            $current_hot = $project->hot;
+            $project->hot = $current_hot - 1.000 / $project->max_number;
+            $project->save();
         } else {
             // ブックマークが存在しない場合は新規作成
             $favorite = new Favorite();
             $favorite->project_id = $id;
             $favorite->user_id = $user_id;
             $favorite->save();
+            // ワイワイ度
+            $project = Project::find($id);
+            $current_hot = $project->hot;
+            $project->hot = $current_hot + 1.000 / $project->max_number;
+            $project->save();
         }
 
         return redirect()->route("user.show-project", $id);

@@ -44,6 +44,7 @@
                 </span>
 
                 <span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s">
+                @if($project->id !== Auth::user()->id)
                   <div class="favorite">
                     @if($project->favoritedBy(Auth::user())->exists())
                     <a href="/favorite/toggle/{{ $project->id }}"><i class="fas fa-heart-broken"></i></a>
@@ -51,6 +52,7 @@
                     <a href="/favorite/toggle/{{ $project->id }}"><i class="fas fa-heart"></i></a> 
                     @endif
                   </div>
+                @endif
 
                   @if($project->user_id == Auth::user()->id)
                   <a href="{{ route('user.edit-project', $project->id) }}" class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 ml-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Edit</a>
@@ -177,18 +179,22 @@
                   </div>
                 </div>
                 <div class="flex">
-                  @if ($joinCount < $project->max_number || $project->JoinedBy(Auth::user())->exists())
+                @if($project->id !== Auth::user()->id)
+                  <div>
+                  @if($joinCount < $project->max_number || $project->JoinedBy(Auth::user())->exists())
                     <div class="join">
-                      @if($project->JoinedBy(Auth::user())->exists())
-                        <a href="/join/toggle/{{ $project->id }}" class="mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Leave</a>
-                      @else
-                        <a href="/join/toggle/{{ $project->id }}" class="mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Join</a> 
-                      @endif
+                    @if($project->JoinedBy(Auth::user())->exists())
+                      <a href="/join/toggle/{{ $project->id }}" class="mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Leave</a>
+                    @else
+                      <a href="/join/toggle/{{ $project->id }}" class="mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Join</a> 
+                    @endif
                     </div>
                   @else
                     <p>Full</p>
                   @endif
-                    <p class="join-rate">{{ $joinCount }}/{{ $project->max_number }}</p>
+                  </div>
+                @endif
+                  <p class="join-rate">{{ $joinCount }}/{{ $project->max_number }}</p>
                 </div>
               </section>
               </div>

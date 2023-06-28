@@ -62,6 +62,8 @@ class RegisteredUserController extends Controller
             'avatar' => $avatar,
             'status' => $request->status,
             'introduction' => $request->introduction,
+            'scores' => 0,
+            'scored_count' => 0,
             'password' => Hash::make($request->password),
         ]));
 
