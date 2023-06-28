@@ -4,11 +4,13 @@
   <div class="text-gray-600 body-font overflow-hidden">
     <div class="container px-5 py-12 mx-auto">
       <div class="lg:h-full mx-auto flex sm:flex-col sm:items-center md:flex-row">
-        <div class="sm:w-96 md:w-60 lg:w-96 md:h-60 lg:h-96">
-          <a href="{{ route('user.editAvatar', $user->id) }}" class="ml-5 mb-1"><img alt="profile-image" class="w-full h-full object-cover object-center rounded-full" src="{{ asset('storage/images/'.$user->avatar) }}"></a>
-        </div>
+        <a href="{{ route('user.editAvatar', $user->id) }}" class="ml-10 mb-1">
+          <div class="sm:w-96 md:w-60 lg:w-96 md:h-60 lg:h-96">
+            <img alt="profile-image" class="w-full h-full object-cover object-center rounded-full" src="{{ asset('storage/images/'.$user->avatar) }}">
+          </div>
+        </a>
       
-        <div class="lg:w-4/6 lg:py-6 pl-5 mt-6 mb-3 lg:mt-0"> 
+        <div class="lg:w-4/6 lg:py-6 pl-8 mt-6 mb-3 lg:mt-0"> 
           <h1 class="text-gray-900 text-3xl title-font font-medium">{{ $user->name }}</h1>
           <a href="{{ route('user.edit', $user->id) }}" class="ml-5 mb-1"><h2>Edit Profile</h2></a>
           <div class="flex">
@@ -62,10 +64,12 @@
                 <li class="text-gray-500 mr-3">{{ $user->status }}</li>
               </ul>
             </li>
+            @if($user->id == auth()->user()->id)
             {{-- 電話番号、メールアドレス、住所 --}}
             <li>phonenumber : {{ $user->phoneNumber }}</li>
             <li>email : {{ $user->email }}</li>
             <li>address : {{ $user->address }}</li>
+            @endif
           </ul>
             {{-- ------------------------------------------------------------------------- --}}
 
@@ -84,6 +88,7 @@
           {{-- ------------------------------------------------------------------------- --}}
 
 
+@if($user->id == auth()->user()->id)
   <select id="filter-select" class="ml-24 mt-10 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block">
     <option value="all">Your events</option>
     <option value="create">Created by you</option>
@@ -93,7 +98,6 @@
           
 
   {{-- all企画 --}}
-
   <div id="all" class="text-gray-600 body-font">
     @foreach($projects as $project)
     <div class="container mx-auto flex px-5 py-12 md:flex-row flex-col items-center">
@@ -240,6 +244,40 @@
     </div>
     @endforeach
   </div>
+@else
+  {{-- create企画 --}}
+  <div id="create" class="text-gray-600 body-font">
+    @foreach($create as $project)
+    <div class="container mx-auto flex px-5 py-12 md:flex-row flex-col items-center">
+      <div class="lg:max-w-lg lg:w-1/3 md:w-1/2 w-5/6 mb-10 md:mb-0">
+        <a href="{{ route('user.show-project', $project->id) }}"><img class="object-cover object-center rounded" alt="project-image" src="{{ asset('storage/images/'.$project->image) }}"></a>
+      </div>
+      <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
+        <div class="flex justify-between w-full pr-10">
+          <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">{{ $project->title }}</h1>
+        </div>
+        <p class="mb-8 leading-relaxed">{{ $project->contents }}</p>
+        <div>
+          <div class="">
+            <p>Location</p>
+            <p class="title-font font-medium text-2xl text-gray-900">{{ $project->location }}</p>
+          </div>
+          <div class="">
+            <p>Date</p>
+            <p class="title-font font-medium text-2xl text-gray-900">{{ $project->start_time }}〜{{ $project->end_time }}</p>     
+          </div>
+      
+          <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
+            <a href="{{ route('user.show-project', $project->id) }}"><p class="mr-3">More Infomation</p></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    @endforeach
+  </div>
+@endif
+
+
 </body>
 
 </x-app-layout>
