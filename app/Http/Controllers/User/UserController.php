@@ -230,7 +230,7 @@ class UserController extends Controller
         $project = Project::find($id);
         $joinCount = Join::where('project_id', $project->id)->count();
         
-        return view('user.show_project', compact('project', 'joinCount'));
+        return view('user.show-project', compact('project', 'joinCount'));
 
     }
   
