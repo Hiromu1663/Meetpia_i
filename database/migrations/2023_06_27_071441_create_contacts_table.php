@@ -17,6 +17,10 @@ class CreateContactsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
+            $table->unsignedBigInteger('project_id');
+            $table->foreign('project_id')->references('id')->on('projects');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('message');
             $table->timestamps();
         });

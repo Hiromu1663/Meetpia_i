@@ -56,7 +56,7 @@ Route::prefix('user')
     Route::put('/update/{id}', 'update')->name('update');
     Route::delete('/destroy/{id}', 'destroy')->name('destroy');
     // Projectの詳細表示
-    Route::get('/show-project/{id}', 'showProject')->name('show-project');
+    Route::get('/show-project/{id}', 'showProject')->name('show_project');
     // Projectの編集,削除
     Route::get('/edit-project/{id}', 'editProject')->name('edit-project');
     Route::put('/update-project/{id}', 'updateProject')->name('update-project');
@@ -71,9 +71,11 @@ Route::prefix('user')
     Route::get('/review/{id}', 'createReview')->name('create_review');
     Route::post('/store_review/{id}', 'storeReview')->name('store_review');
     // Contactの入力,確認,送信
-    Route::get('/contact/form', 'contactForm')->name('contact_form');
-    Route::post('/contact/confirm', 'contactConfirm')->name('contact_confirm');
-    Route::post('/contact/thanks', 'contactSend')->name('contact_send');
+    Route::get('/contact/form/{project_id}', 'contactForm')->name('contact_form');
+    Route::post('/contact/confirm/{project_id}', 'contactConfirm')->name('contact_confirm');
+    Route::post('/contact/thanks/{project_id}', 'contactSend')->name('contact_send');
+    Route::get('/contact/list/{id}', 'contactIndex')->name('contact_index');
+    Route::get('/contact/show/{id}', 'contactShow')->name('contact_show');
 });
 
 Route::prefix('user_business')
