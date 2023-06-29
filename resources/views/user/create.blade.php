@@ -79,6 +79,11 @@
                 <x-input id="location" class="block mt-1 w-full" type="text" name="location" :value="old('location')" />
             </div>
             
+            {{-- Max_number --}}
+            <div class="mt-4">
+                <x-label for="max_number" :value="__('Limit Persons')" />
+                <x-input id="max_number" class="block mt-1" type="number" name="max_number" min=0 :value="old('max_number')" required/>
+            </div>
 
             
 
