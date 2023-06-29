@@ -127,7 +127,7 @@ class FavoriteController extends Controller
             $project->save();
         }
 
-        return redirect()->route("user.show-project", $id);
+        return redirect()->route("user.show_project", $id);
         // return redirect()->back();
     }
 

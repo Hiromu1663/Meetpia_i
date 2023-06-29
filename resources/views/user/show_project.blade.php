@@ -46,7 +46,6 @@
                 </span> --}}
 
                 <span class="flex ml-3 pl-3 py-2 border-gray-200 space-x-2s">
-                {{-- @if($project->id !== Auth::user()->id) --}}
                   <div class="favorite flex mt-3">
                     @if($project->favoritedBy(Auth::user())->exists())
                     <a href="/favorite/toggle/{{ $project->id }}"><i class="fas fa-heart-broken"></i></a>
@@ -57,7 +56,6 @@
                       {{ $project->favorites->count() }}
                     </p>
                   </div>
-                {{-- @endif --}}
 
                   @if($project->user_id == Auth::user()->id)
                   <a href="{{ route('user.edit-project', $project->id) }}" class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 ml-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Edit</a>

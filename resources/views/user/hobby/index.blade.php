@@ -117,7 +117,7 @@
                             @forelse($hobbies as $project)
                             <div class="xl:w-1/4 md:w-1/2 p-4">
                               <div class="bg-gray-100 p-6 rounded-lg">
-                                <a href="{{ route('user.show-project', ['id' => $project->id]) }}">
+                                <a href="{{ route('user.show_project', ['id' => $project->id]) }}">
                                   <img class="h-40 rounded w-full object-cover object-center mb-6" src="{{ asset('storage/images/' .$project->image) }}" alt="content">
                                 </a>
                                 <h2 class="text-lg text-gray-900 font-medium title-font mb-4 mt-2 text-center">{{ $project->title }}</h2>
