@@ -78,11 +78,6 @@
               </div>
             </div>
           </div>
-          <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
-            <div class="flex">
-              <span class="mr-3">More Infomation</span>
-            </div>
-          </div>
         </div>
       </section>
       
