@@ -11,7 +11,7 @@
 
         <form method="POST" action="{{ route('user.register') }}" enctype="multipart/form-data">
             @csrf
-            ユーザー用
+            User Registration
             <!-- Name -->
             <div>
                 <x-label for="name" :value="__('Name')" />

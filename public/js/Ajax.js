@@ -17,18 +17,18 @@ $(document).ready(function() {
       success: function(response) {
         // console.log(response);
         // let isFavorited = targetFavorite.find('a').text() === 'お気に入りを外す';
-        let isFavorited = targetFavorite.find('a').html().includes('<i class="fas fa-heart-broken"></i>');
+        let isFavorited = targetFavorite.find('a').html().includes('<i class="fas fa-heart"></i>');
         let favorites_count = $('#favorites_count');
         let current_favorites_count = parseInt(favorites_count.text());
 
         if (isFavorited) {
           // targetFavorite.find('a').text('お気に入り'); 
-          targetFavorite.find('a').html('<i class="fas fa-heart"></i>');
+          targetFavorite.find('a').html('<i class="far fa-heart"></i>');
           let updated_favorites_count = current_favorites_count - 1;
           favorites_count.text(updated_favorites_count);
         } else {
           // targetFavorite.find('a').text('お気に入りを外す');
-          targetFavorite.find('a').html('<i class="fas fa-heart-broken"></i>');
+          targetFavorite.find('a').html('<i class="fas fa-heart"></i>');
           let updated_favorites_count = current_favorites_count + 1;
           favorites_count.text(updated_favorites_count);
         }     

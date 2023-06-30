@@ -13,6 +13,7 @@ use App\Models\Contact;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\Rule;
+use Carbon\Carbon;
 
 
 class UserController extends Controller
@@ -30,21 +31,21 @@ class UserController extends Controller
         if ($search !== null) {
             // 検索がある場合の処理
             $query = Project::search($search)->orderBy('created_at', 'DESC');
-            $projects = $query->take(8)->get();
+            $projects = $query->whereDate('end_time', '>', Carbon::now())->take(8)->get();
         
-            $business = Project::where('genre', 'Business')->search($search)->take(6)->get();
-            $hobbies = Project::where('genre', 'Hobby')->search($search)->take(6)->get();
-            $study = Project::where('genre', 'Study')->search($search)->take(6)->get();
-            $trades = Project::where('genre', 'Trade')->search($search)->take(6)->get();
-            $others = Project::where('genre', 'Others')->search($search)->take(6)->get();
+            $business = Project::where('genre', 'Business')->whereDate('end_time', '>', Carbon::now())->search($search)->take(6)->get();
+            $hobbies = Project::where('genre', 'Hobby')->whereDate('end_time', '>', Carbon::now())->search($search)->take(6)->get();
+            $study = Project::where('genre', 'Study')->whereDate('end_time', '>', Carbon::now())->search($search)->take(6)->get();
+            $trades = Project::where('genre', 'Trade')->whereDate('end_time', '>', Carbon::now())->search($search)->take(6)->get();
+            $others = Project::where('genre', 'Others')->whereDate('end_time', '>', Carbon::now())->search($search)->take(6)->get();
         } else {
             // 検索がない場合の処理
-            $projects = Project::orderBy('created_at', 'DESC')->take(8)->get();
-            $business = Project::where('genre', 'Business')->take(6)->get();
-            $hobbies = Project::where('genre', 'Hobby')->take(6)->get();
-            $study = Project::where('genre', 'Study')->take(6)->get();
-            $trades = Project::where('genre', 'Trade')->take(6)->get();
-            $others = Project::where('genre', 'Others')->take(6)->get();
+            $projects = Project::orderBy('created_at', 'DESC')->whereDate('end_time', '>', Carbon::now())->take(8)->get();
+            $business = Project::where('genre', 'Business')->whereDate('end_time', '>', Carbon::now())->take(6)->get();
+            $hobbies = Project::where('genre', 'Hobby')->whereDate('end_time', '>', Carbon::now())->take(6)->get();
+            $study = Project::where('genre', 'Study')->whereDate('end_time', '>', Carbon::now())->take(6)->get();
+            $trades = Project::where('genre', 'Trade')->whereDate('end_time', '>', Carbon::now())->take(6)->get();
+            $others = Project::where('genre', 'Others')->whereDate('end_time', '>', Carbon::now())->take(6)->get();
 
         }
         

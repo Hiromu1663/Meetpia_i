@@ -14,7 +14,7 @@
 
         <form method="POST" action="{{ route('user.login') }}">
             @csrf
-            ユーザー用
+            User Login
             <!-- Email Address -->
             <div>
                 <x-label for="email" :value="__('Email')" />
