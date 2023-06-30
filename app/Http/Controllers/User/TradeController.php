@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class TradeController extends Controller
 {
@@ -20,10 +21,10 @@ class TradeController extends Controller
         if ($search !== null) {
             // 検索がある場合の処理
             $query = Project::search($search)->orderBy('created_at', 'DESC');
-            $trade = $query->where('genre', 'Trade')->get();
+            $trade = $query->where('genre', 'Trade')->whereDate('end_time', '>', Carbon::now())->get();
         } else {
             // 検索がない場合の処理
-            $trade = Project::where('genre', 'Trade')->get();
+            $trade = Project::where('genre', 'Trade')->whereDate('end_time', '>', Carbon::now())->get();
         }
 
         return view('user.trade.index', compact('trade'));

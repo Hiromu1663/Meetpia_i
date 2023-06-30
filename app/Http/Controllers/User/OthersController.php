@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class OthersController extends Controller
 {
@@ -21,10 +22,10 @@ class OthersController extends Controller
         if ($search !== null) {
             // 検索がある場合の処理
             $query = Project::search($search)->orderBy('created_at', 'DESC');
-            $others = $query->where('genre', 'Others')->get();
+            $others = $query->where('genre', 'Others')->whereDate('end_time', '>', Carbon::now())->get();
         } else {
             // 検索がない場合の処理
-            $others = Project::where('genre', 'Others')->get();
+            $others = Project::where('genre', 'Others')->whereDate('end_time', '>', Carbon::now())->get();
         }
 
         return view('user.others.index', compact('others'));

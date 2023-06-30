@@ -122,9 +122,9 @@
                                 <p class="leading-relaxed text-base">Location : {{ $project->location }}</p>
                                 <p class="leading-relaxed text-base">Start : {{ $project->start_time }}</p>
                                 <p class="leading-relaxed text-base">End : {{ $project->end_time }}</p>
-                                <i class="fa fa-heart mt-3" aria-hidden="true">{{ $project->favorites->count() }}</i>
-                                <i class="fa fa-commenting ml-2" aria-hidden="true">{{ $project->joins->count() }}/{{ $project->max_number }}</i>
-                                <i class="fa fa-user-circle-o ml-2" aria-hidden="true">{{ $project->user->name }}</i>
+                                <i class="fa fa-heart mt-3" aria-hidden="true"> {{ $project->favorites->count() }}</i>
+                                <i class="fa fa-users ml-2" aria-hidden="true"> {{ $project->joins->count() }}/{{ $project->max_number }}</i>
+                                <i class="fa fa-user-circle-o ml-2" aria-hidden="true"> {{ $project->user->name }}</i>
                               </div>
                             </div>
                             @empty
