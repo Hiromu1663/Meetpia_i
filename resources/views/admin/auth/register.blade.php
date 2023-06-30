@@ -11,7 +11,7 @@
 
         <form method="POST" action="{{ route('admin.register') }}">
             @csrf
-            管理者用
+            Admin Registration
             <!-- Name -->
             <div>
                 <x-label for="name" :value="__('Name')" />

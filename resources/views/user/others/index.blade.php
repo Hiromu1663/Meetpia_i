@@ -115,16 +115,16 @@
                             @forelse($others as $project)
                             <div class="xl:w-1/4 md:w-1/2 p-4">
                               <div class="bg-gray-100 p-6 rounded-lg">
-                                <a href="{{ route('user.show-project', ['id' => $project->id]) }}">
+                                <a href="{{ route('user.show_project', ['id' => $project->id]) }}">
                                   <img class="h-40 rounded w-full object-cover object-center mb-6" src="{{ asset('storage/images/' .$project->image) }}" alt="content">
                                 </a>
                                 <h2 class="text-lg text-gray-900 font-medium title-font mb-4 mt-2 text-center">{{ $project->title }}</h2>
                                 <p class="leading-relaxed text-base">Location : {{ $project->location }}</p>
                                 <p class="leading-relaxed text-base">Start : {{ $project->start_time }}</p>
                                 <p class="leading-relaxed text-base">End : {{ $project->end_time }}</p>
-                                <i class="fa fa-heart mt-3" aria-hidden="true">{{ $project->favorites->count() }}</i>
-                                <i class="fa fa-commenting ml-2" aria-hidden="true">{{ $project->joins->count() }}/{{ $project->max_number }}</i>
-                                <i class="fa fa-user-circle-o ml-2" aria-hidden="true">{{ $project->user->name }}</i>
+                                <i class="fa fa-heart mt-3" aria-hidden="true"> {{ $project->favorites->count() }}</i>
+                                <i class="fa fa-users ml-2" aria-hidden="true"> {{ $project->joins->count() }}/{{ $project->max_number }}</i>
+                                <i class="fa fa-user-circle-o ml-2" aria-hidden="true"> {{ $project->user->name }}</i>
                               </div>
                             </div>
                             @empty

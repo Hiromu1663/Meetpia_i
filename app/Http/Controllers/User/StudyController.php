@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class StudyController extends Controller
 {
@@ -20,10 +21,10 @@ class StudyController extends Controller
         if ($search !== null) {
             // 検索がある場合の処理
             $query = Project::search($search)->orderBy('created_at', 'DESC');
-            $study = $query->where('genre', 'Study')->get();
+            $study = $query->where('genre', 'Study')->whereDate('end_time', '>', Carbon::now())->get();
         } else {
             // 検索がない場合の処理
-            $study = Project::where('genre', 'Study')->get();
+            $study = Project::where('genre', 'Study')->whereDate('end_time', '>', Carbon::now())->get();
         }
 
         return view('user.study.index', compact('study'));

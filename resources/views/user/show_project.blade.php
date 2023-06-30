@@ -46,18 +46,16 @@
                 </span> --}}
 
                 <span class="flex ml-3 pl-3 py-2 border-gray-200 space-x-2s">
-                {{-- @if($project->id !== Auth::user()->id) --}}
                   <div class="favorite flex mt-3">
                     @if($project->favoritedBy(Auth::user())->exists())
-                    <a href="/favorite/toggle/{{ $project->id }}"><i class="fas fa-heart-broken"></i></a>
+                    <a href="/favorite/toggle/{{ $project->id }}"><i class="fas fa-heart"></i></a>
                     @else
-                    <a href="/favorite/toggle/{{ $project->id }}"><i class="fas fa-heart"></i></a> 
+                    <a href="/favorite/toggle/{{ $project->id }}"><i class="far fa-heart"></i></a> 
                     @endif
-                    <p id="favorites_count">
+                    <p id="favorites_count" class="ml-1">
                       {{ $project->favorites->count() }}
                     </p>
                   </div>
-                {{-- @endif --}}
 
                   @if($project->user_id == Auth::user()->id)
                   <a href="{{ route('user.edit-project', $project->id) }}" class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 ml-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Edit</a>
@@ -81,11 +79,6 @@
               </div>
             </div>
           </div>
-          <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
-            <div class="flex">
-              <span class="mr-3">More Infomation</span>
-            </div>
-          </div>
         </div>
       </section>
       
@@ -105,7 +98,7 @@
                       <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
                     </svg>
                     @if($project->user->scored_count !== 0)
-                    <span class="mt-2 text-gray-600 ml-1">{{ round($user->scores / $user->scored_count, 1) }} / 5</span>
+                    <span class="mt-2 text-gray-600 ml-1">{{ round($project->user->scores / $project->user->scored_count, 1) }} / 5</span>
                     @else
                     <span class="mt-2 text-gray-600 ml-1">0</span>
                     @endif
