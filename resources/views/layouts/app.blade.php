@@ -18,6 +18,7 @@
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
         <script src="{{ asset('js/Ajax.js') }}"></script>
         {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+        <link rel="icon" type="image/x-icon" href="{{ asset('storage/images/logo.png') }}">
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
