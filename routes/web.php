@@ -40,9 +40,11 @@ use Illuminate\Support\Facades\Route;
 
 
 //誰でも見れるトップページ
-Route::get('/', function () {
-    return view('welcome.welcome-index');
-});
+// Route::get('/', function () {
+//     return view('welcome.welcome-index');
+// });
+
+Route::get('/', [WelcomeController::class, 'index']);
 
 Route::prefix('user')
 ->middleware('auth:users')

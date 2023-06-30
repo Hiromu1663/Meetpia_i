@@ -13,6 +13,8 @@ class Project extends Model
 {
 
     use HasFactory, SoftDeletes;
+
+    protected $table = 'projects';
     
     protected $fillable = [
         'title',
@@ -22,6 +24,7 @@ class Project extends Model
         'genre',
         'start_time',
         'end_time',
+        'hot',
         'location',
     ];
 
