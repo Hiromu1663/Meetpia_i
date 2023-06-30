@@ -1,4 +1,5 @@
 <x-app-layout>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <x-slot name="header">
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
           Contact List

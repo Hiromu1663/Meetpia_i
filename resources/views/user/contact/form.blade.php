@@ -1,4 +1,5 @@
 <x-app-layout>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <div class="flex items-center justify-center">
   <div class="p-4 lg:w-1/2 md:w-full">
     <form method="POST" action="{{ route('user.contact_confirm') }}">

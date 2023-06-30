@@ -1,4 +1,5 @@
 <x-app-layout>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <div class="flex items-center justify-center">
     <div class="p-4 lg:w-1/2 md:w-full">
       <form method="POST" action="{{ route('user.contact_send', ['project_id' => $project_id]) }}">
@@ -35,7 +36,7 @@
                   </div>
                   <div class="flex flex-row items-center justify-center p-2 w-full">
                     {{-- <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Jion</button> --}}
-                    <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Back</button>
+                    {{-- <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Back</button> --}}
                     <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Contact</button>
                   </div>
                 </div>

@@ -6,7 +6,7 @@
             <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="{{ asset('storage/images/'.$project->image) }}">
             <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <h2 class="text-sm title-font text-gray-500 tracking-widest">EVENT TITLE</h2>
-              <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{ $project->title }}</h1>
+              <h1 class="text-gray-900 text-3xl title-font font-medium mb-1 mt-2">{{ $project->title }}</h1>
               <div class="flex mb-4">
                 {{-- <span class="flex items-center">
                   <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-purple-500" viewBox="0 0 24 24">
@@ -69,7 +69,8 @@
                   
                 
               </div>
-              <p class="leading-relaxed">{{ $project->contents }}</p>
+              <h2 class="text-sm title-font text-gray-500 tracking-widest">CONTENTS : </h2>
+              <p class="leading-relaxed mt-2">{{ $project->contents }}</p>
               <div class="mt-4">
                 <span class="title-font font-medium text-2xl text-gray-500">Location : {{ $project->location }}</span>
               </div>
@@ -204,7 +205,7 @@
                 @if($project->id !== Auth::user()->id)
                   <div>
                   @if($joinCount < $project->max_number || $project->JoinedBy(Auth::user())->exists())
-                    <div class="join">
+                    <div class="join mr-4">
                     @if($project->JoinedBy(Auth::user())->exists())
                       <a href="/join/toggle/{{ $project->id }}" class="mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Leave</a>
                     @else
